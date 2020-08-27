@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ReturnsProcessing_SIT" />
         <module name="SMOKE" />
+        <module name="untitled" />
         <module name="ReturnsProcessing" />
       </profile>
     </annotationProcessing>
