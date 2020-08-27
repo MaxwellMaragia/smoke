@@ -43,21 +43,23 @@ public class hooks extends BaseClass {
 
     public void AftersaveScreenshot(Scenario scenario) {
 
+        File destPath;
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_hh.mm.ss");
-
         Date curDate = new Date(); String strDate = sdf.format(curDate);
-
         File screenshot_with_scenario_name = (((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE));
 
-        File destPath=new File("./target/Extent_Reports/Screenshots/" + scenario.getName()+ strDate + ".png");
+        if(scenario.isFailed())
+        {
+            destPath=new File("./test-output/Screenshots/Failed/" + scenario.getName()+ strDate + ".png");
+        }
+        else{
+            destPath=new File("./test-output/Screenshots/Passed/" + scenario.getName()+ strDate + ".png");
+        }
 
         try {
-
             FileUtils.copyFile(screenshot_with_scenario_name,destPath);
-//            driver.close();
-
         } catch (IOException e) { // TODO Auto-generated catch block
-
             e.printStackTrace();
         }
 

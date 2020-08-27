@@ -193,7 +193,7 @@ public class steps extends BaseClass {
 
     @Then("^Click table column \"([^\"]*)\"$")
     public void click_table_column(String ColumnXpath) throws Throwable {
-        Thread.sleep(5000);
+        Thread.sleep(6000);
         WebDriverWait wait = new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ColumnXpath))).click();
         Actions action = new Actions(driver);
@@ -1023,4 +1023,150 @@ public class steps extends BaseClass {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("frmReportDetails:TIN_NUMBER"))).sendKeys(tin);
     }
+
+
+
+    //................portal..........................................................................//
+
+    //Verify precense of navigation links in home page
+    @Then("^Verify Home Screen Buttons$")
+    public void verify_home_screen_buttons(DataTable data) throws Throwable {
+
+        WebDriverWait wait = new WebDriverWait(driver,100);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Taxpayer Notification')]")));
+        List<List<String>> obj = data.asLists();
+        String buttons[] = {
+                obj.get(0).get(0),
+                obj.get(1).get(0),
+                obj.get(2).get(0),
+                obj.get(3).get(0)
+        };
+
+        for (int i = 0; i < buttons.length; i++) {
+            WebElement Button = driver.findElement(By.xpath("//button[contains(text(),'" + buttons[i] + "')]"));
+            if (Button.isDisplayed()) {
+                Assert.assertTrue("Button '" + buttons[i] + "' found", true);
+            } else {
+                Assert.fail("Button '" + buttons[i] + "' not found");
+            }
+
+        }
+
+
+    }
+
+    //Verify accounts table columns
+    @Then("^Verify Tax Accounts Table$")
+    public void verify_tax_accounts_table(DataTable data) throws Throwable {
+        List<List<String>> obj = data.asLists();
+        String columns[] = {obj.get(0).get(0), obj.get(1).get(0)};
+
+        //check if columns exist
+        for (String column : columns) {
+            WebElement Table_Column = driver.findElement(By.xpath("//th[contains(text(),'" + column + "')]"));
+
+
+            if (Table_Column.isDisplayed()) {
+
+                System.out.println("Column : " + column + " found ");
+                Assert.assertTrue(true);
+                Thread.sleep(2000);
+            } else {
+
+                Assert.fail();
+                System.out.println("Column : " + column + " not found ");
+
+            }
+        }
+    }
+
+    @Then("^Click statement requests under tasks$")
+    public void click_statement_requests_under_tasks() throws Throwable{
+        Thread.sleep(15000);
+        driver.findElement(By.id(Pro.getProperty("Statement_Request_ID"))).click();
+    }
+
+    @Then("^Click tax type dropdown and select tax type that has transactions$")
+    public void click_tax_type_dropdown_and_select_tax_type_that_has_transactions() throws Throwable {
+        Thread.sleep(7000);
+        driver.findElement(By.xpath(Pro.getProperty("TaxTypeDropdownXPATH"))).click();
+
+        String transactionsXpath = "//span[contains(text(),'Suspense')]";
+        WebDriverWait wait = new WebDriverWait(driver,120);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(transactionsXpath))).click();
+    }
+
+    @Then("^Verify statement request input fields$")
+    public void verify_statement_request_input_fields(DataTable data) throws Throwable {
+
+        Thread.sleep(3000);
+
+        List<List<String>> obj = data.asLists();
+        String[] elements = {obj.get(0).get(0), obj.get(1).get(0), obj.get(2).get(0), obj.get(3).get(0), obj.get(4).get(0)};
+
+        for (String element : elements) {
+            WebElement InputElement = driver.findElement(By.xpath(Pro.getProperty(element)));
+            if (InputElement.isDisplayed()) {
+                Assert.assertTrue(true);
+            } else {
+                Assert.fail("Element '" + element + "' not found");
+            }
+
+        }
+    }
+
+    @Then("^Click cancel button$")
+    public void click_cancel_button() throws Throwable {
+
+        WebDriverWait wait = new WebDriverWait(driver,100);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("Cancel_XPATH")))).click();
+
+    }
+
+    @Then("^Select month \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void select_month_and_year(String month, String year) throws Throwable {
+
+        Thread.sleep(2000);
+        driver.findElement(By.xpath(Pro.getProperty("MonthDropdownXPATH"))).click();
+        String monthXPATH = "//span[contains(text(),'" + month + "')]";
+        driver.findElement(By.xpath(monthXPATH)).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath(Pro.getProperty("YearDropdownXPATH"))).click();
+        String yearXPATH = "//span[contains(text(),'" + year + "')]";
+        driver.findElement(By.xpath(yearXPATH)).click();
+
+    }
+
+    @Then("^Click submit : portal$")
+    public void click_submit_portal() throws Throwable {
+        driver.findElement(By.xpath(Pro.getProperty("Submit_XPATH"))).click();
+    }
+
+    @Then("^Click download and verify download$")
+    public void click_download_and_verify_download() throws Throwable {
+
+        WebDriverWait wait = new WebDriverWait(driver,120);
+        WebElement success = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'Statement generated successfully')]")));
+        if (success.isDisplayed()) {
+            Thread.sleep(3000);
+            if (driver.findElement(By.xpath(Pro.getProperty("Download_XPATH"))).isEnabled()) {
+                Assert.assertTrue("Download button is enabled", true);
+            }
+            else {
+                Assert.fail("Download button not enabled");
+            }
+        } else {
+            Assert.fail("Download button not enabled");
+        }
+
+    }
+
+    @Then("^Select report file type \"([^\"]*)\"$")
+    public void select_report_file_type(String reportFormat) throws Throwable {
+        BaseClass.waitForPageToLoad();
+        driver.findElement(By.xpath("//*[@id=\"frmReportDetails:ReportFormat\"]/div[3]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//li[contains(text(),'" + reportFormat + "')]")).click();
+    }
+
 }
