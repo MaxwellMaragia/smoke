@@ -3,11 +3,11 @@ Feature: [SUC:01-12] Submit Portal Application
   Background:
     Given User navigates to the Portal login page
     When User clicks login as Applicant
-    And enters Portal email "mamaa@mailinator.com" and password "Passw0rd@123"
+    And enters Portal email "max0@mailinator.com" and password "Passw0rd@123"
     Then successfully logged in to appplicant portal
 
-  @SUC:01-12
-  Scenario:UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal
+  @SUC:01-12 @UAT_TCS-03.03.4
+  Scenario: UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal
     Given user clicks Personal Details
     And user enters Applicant Individual details
       | FirstName          | Max                   |

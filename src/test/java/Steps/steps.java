@@ -37,7 +37,6 @@ public class steps extends BaseClass {
         driver = BaseClass.getDriver();
     }
 
-
     @Before(order = 0)
     public void method1() throws Exception {
         // this.S=S;
@@ -48,14 +47,12 @@ public class steps extends BaseClass {
 
     @Given("^Open trips URL$")
     public void loadTripsLink() throws Throwable {
-        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("MRA_BackOffice_URL"));
         driver.manage().window().maximize();
     }
 
     @Given("^Open portal URL$")
     public void loadPortalLink() throws Throwable {
-        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("PORTAL_URL"));
         driver.manage().window().maximize();
     }
@@ -1062,10 +1059,7 @@ public class steps extends BaseClass {
             } else {
                 Assert.fail("Button '" + buttons[i] + "' not found");
             }
-
         }
-
-
     }
 
     //Verify accounts table columns
@@ -4082,7 +4076,7 @@ public class steps extends BaseClass {
 
     @Then("^successfully logged in to appplicant portal$")
     public void successfully_logged_in_to_appplicant_portal() throws Throwable {
-        WebDriverWait wait=new WebDriverWait(driver,30);
+        WebDriverWait wait=new WebDriverWait(driver,60);
         WebElement nav = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[1]/ul/li[1]")));
         Assert.assertTrue(nav.isDisplayed());
         Thread.sleep(4000);

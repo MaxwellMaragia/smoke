@@ -32,4 +32,4 @@ Feature: [SUC:01-11] Create Applicant Portal Credential
     Examples:
     #    change email after each run
       | Taxpayer Registration Type | identification type | email                | password     | path                                  |
-      | Organisation               | NID Card            | bab02@mailinator.com | Passw0rd@123 | C:\id_doc.png |
+      | Organisation               | NID Card            | bab03@mailinator.com | Passw0rd@123 | C:\id_doc.png |

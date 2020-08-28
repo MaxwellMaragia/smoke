@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-	features = {"src/test/java/Features/Payments"},
+	features = {"src/test/java/Features/Portal-Registration"},
 	glue = "Steps",
-	//tags = "@UAT_M4-02-11",
+	tags = "@UAT_TCS-03.03.4",
 	plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 	dryRun = false,
 	monochrome = true

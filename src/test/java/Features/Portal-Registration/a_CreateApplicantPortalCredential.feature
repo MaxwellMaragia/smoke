@@ -34,6 +34,6 @@ Feature: [SUC:01-11] Create Applicant Portal Credential
 
 #    change email after each run
       | Taxpayer Registration Type | identification type | email                | password     | path                                  |
-      | Individual                 | NID Card            | mamad@mailinator.com | Passw0rd@123 | C:\Users\v-bakam\Downloads\id_doc.png |
+      | Individual                 | NID Card            | max0@mailinator.com | Passw0rd@123 | C:\id_doc.png |
 
 
