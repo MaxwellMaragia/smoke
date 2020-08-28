@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-	features = {"src/test/java/Features"},
+	features = {"src/test/java/Features/Payments"},
 	glue = "Steps",
 	//tags = "@UAT_M4-02-11",
 	plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
