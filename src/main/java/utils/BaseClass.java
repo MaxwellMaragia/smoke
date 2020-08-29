@@ -49,6 +49,13 @@ public class BaseClass {
         return today.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
+    public static String tomorrowsDate() {
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
+        String formattedDate = tomorrow.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        return formattedDate;
+    }
+
     public static void waitForPageToLoad()
     {
         try {

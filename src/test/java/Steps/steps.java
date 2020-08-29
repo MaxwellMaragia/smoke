@@ -33,12 +33,9 @@ public class steps extends BaseClass {
     public static sharedatastep sharedata;
 
     public steps (sharedatastep sharedata) throws IOException {
-
         steps.sharedata=sharedata;
         driver = BaseClass.getDriver();
-
     }
-
 
     @Before(order = 0)
     public void method1() throws Exception {
@@ -50,14 +47,12 @@ public class steps extends BaseClass {
 
     @Given("^Open trips URL$")
     public void loadTripsLink() throws Throwable {
-        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("MRA_BackOffice_URL"));
         driver.manage().window().maximize();
     }
 
     @Given("^Open portal URL$")
     public void loadPortalLink() throws Throwable {
-        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("PORTAL_URL"));
         driver.manage().window().maximize();
     }
@@ -1064,10 +1059,7 @@ public class steps extends BaseClass {
             } else {
                 Assert.fail("Button '" + buttons[i] + "' not found");
             }
-
         }
-
-
     }
 
     //Verify accounts table columns
@@ -3519,7 +3511,7 @@ public class steps extends BaseClass {
         Thread.sleep(4000);
     }
 
-    //////--------------------------------------Exemptions--------------------------------------------------\\\\\\\\
+    //--------------------------------------Exemptions--------------------------------------------------\\\\\\\\
 
     @Given("^User navigates to Exemptions Applications>>New Exemptions Applications$")
     public void user_navigates_to_exemptions_applicationsnew_exemptions_applications() throws Throwable {
@@ -3854,4 +3846,820 @@ public class steps extends BaseClass {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    //--------------------------------------Taxtype registration -Portal----------------------------------------------------------------------------------------------//
+    @Given("^User navigates to the Portal login page$")
+    public void user_navigates_to_the_portal_login_page() throws Throwable {
+        driver = BaseClass.getDriver();
+        driver.get(Pro.getProperty("PortalURL"));
+    }
+
+    @And("^Enters the Portal username \"([^\"]*)\" and password \"([^\"]*)\" to login$")
+    public void enters_the_portal_username_something_and_password_something_to_login(String strArg1, String strArg2) throws Throwable {
+        Thread.sleep(5000);
+        WebElement usernameInput = driver.findElement(By.xpath("//*[@id=\"id_userName\"]"));
+        usernameInput.sendKeys(strArg1);
+
+        WebElement passwordInput = driver.findElement(By.xpath("//*[@id=\"id_password\"]"));
+        passwordInput.sendKeys(strArg2);
+
+        WebElement loginBtn = driver.findElement(By.id("btnSubmit"));
+        loginBtn.click();
+    }
+
+    @When("^User clicks login as Taxpayer$")
+    public void user_clicks_login_as_taxpayer() throws Throwable {
+        Thread.sleep(5000);
+        WebElement taxPayer = driver.findElement(By.xpath("/html/body/trips-app/div/app-portal-home/div/div/div[1]/div[3]/div[1]/p/a"));
+        taxPayer.click();
+    }
+
+    @Then("^is logged in to portal$")
+    public void is_logged_in_to_portal() throws Throwable {
+        Thread.sleep(5000);
+        WebElement welcomeImage=driver.findElement(By.id("id_btnMyTaxToggle"));
+        Assert.assertTrue(welcomeImage.isDisplayed());
+    }
+    @Then("^is logged in to taxpayer portal$")
+    public void is_logged_in_to_taxpayer_portal() throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,30);
+        WebElement welcomeImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_btnMyTaxToggle")));
+        Assert.assertTrue(welcomeImage.isDisplayed());
+    }
+
+
+    @Given("^user navigates to my tax>>taxtype request$")
+    public void user_navigates_to_my_taxtaxtype_request() throws Throwable {
+        WebElement myTaxDropdown=driver.findElement(By.xpath("//*[@id=\"id_btnMyTaxToggle\"]/span"));
+        myTaxDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("id_linkTaxTypeRequest")).click();
+    }
+
+    @Given("^user navigates to my tax>>request suspension$")
+    public void user_navigates_to_my_taxrequest_suspension() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement myTaxDropdown=driver.findElement(By.xpath("//*[@id=\"id_btnMyTaxToggle\"]/span"));
+        myTaxDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("id_linkRequestSuspension")).click();
+    }
+
+    @And("^enters taxtype as (.+)$")
+    public void enters_taxtype_as(String taxtype) throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,120);
+        WebElement taxTypeDropdown=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"id_taxTypes\"]/div/div[2]/p-dropdown/div/div[3]")));
+        taxTypeDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[text()='"+taxtype+"']")).click();
+    }
+
+    @And("^enters an effective date (.+)$")
+    public void enters_an_effective_date(String date) throws Throwable {
+        WebElement effectiveDateInput=driver.findElement(By.id("id_edr"));
+        effectiveDateInput.click();
+        Thread.sleep(2000);
+        effectiveDateInput.sendKeys(date);
+        Thread.sleep(2000);
+    }
+
+    @And("^enters taxtype taxable turnover (.+)$")
+    public void enters_taxtype_taxable_turnover(String amount) throws Throwable {
+        WebElement taxableTurnoverInput=driver.findElement(By.id("id_taxableTurnover"));
+        taxableTurnoverInput.sendKeys(amount);
+    }
+
+    @And("^clicks taxtype registration Save Button$")
+    public void clicks_taxtype_registration_save_button() throws Throwable {
+        WebElement saveBtn=driver.findElement(By.id("btnSave"));
+        saveBtn.click();
+    }
+
+    @Then("^Portal message is displayed \"([^\"]*)\"$")
+    public void portal_message_is_displayed_something(String strArg1) throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,50);
+        WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), '"+strArg1+"')]")));
+        Assert.assertTrue(message.isDisplayed());
+    }
+
+    @Then("^SUSPEND DORMANT TAX TYPE screen displayed$")
+    public void suspend_dormant_tax_type_screen_displayed() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        WebElement taxTypeDropdown = driver.findElement(By.xpath("//*[@id=\"id_suspendTaxTypeForm\"]/div[1]/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        Assert.assertTrue(taxTypeDropdown.isEnabled());
+
+        WebElement dormantCheckbox = driver.findElement(By.xpath("//*[@id=\"id_suspendTaxTypeForm\"]/div[1]/div/tb-checkbox/div/div[2]/p-checkbox/div/div[2]"));
+        Assert.assertTrue(dormantCheckbox.isEnabled());
+
+        WebElement inputBox = driver.findElement(By.id("id_notes"));
+        Assert.assertTrue(inputBox.isEnabled());
+
+        WebElement submitBtn = driver.findElement(By.id("btnSubmit"));
+        Assert.assertTrue(submitBtn.isEnabled());
+
+        WebElement cancelBtn = driver.findElement(By.id("btnCancel"));
+        Assert.assertTrue(cancelBtn.isEnabled());
+
+    }
+    @And("^enters suspension start date$")
+    public void enters_suspension_start_date() throws Throwable {
+        WebElement suspensionDateInput=driver.findElement(By.id("id_suspensionStartDate"));
+        suspensionDateInput.sendKeys(todaysDate());
+    }
+
+    @And("^enters suspension end date$")
+    public void enters_suspension_end_date() throws Throwable {
+        WebElement endSuspensionDateInput=driver.findElement(By.id("id_suspensionEndDate"));
+        endSuspensionDateInput.sendKeys(tomorrowsDate());
+    }
+
+    @And("^enters reason for suspension$")
+    public void enters_reason_for_suspension() throws Throwable {
+        WebElement reasonDropdown=driver.findElement(By.xpath("//*[@id=\"id_suspendTaxTypeForm\"]/div[1]/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        reasonDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_suspendTaxTypeForm\"]/div[1]/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[2]"));
+    }
+
+    @And("^clicks Suspension Save Button$")
+    public void clicks_suspension_save_button() throws Throwable {
+        WebElement saveBtn=driver.findElement(By.id("btnSubmit"));
+        saveBtn.click();
+    }
+
+    @And("^checks dormant account$")
+    public void checks_dormant_account() throws Throwable {
+        WebElement dormantCheckbox = driver.findElement(By.xpath("//*[@id=\"id_suspendTaxTypeForm\"]/div[1]/div/tb-checkbox/div/div[2]/p-checkbox/div/div[2]"));
+        dormantCheckbox.click();
+    }
+
+    @And("^enters dormant start date$")
+    public void enters_dormant_start_date() throws Throwable {
+        WebElement effectiveDateInput=driver.findElement(By.id("id_dormantStartDate"));
+        effectiveDateInput.sendKeys(todaysDate());
+
+    }
+    @Given("^user navigates to my tax>>request reactivation$")
+    public void user_navigates_to_my_taxrequest_reactivation() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement myTaxDropdown=driver.findElement(By.xpath("//*[@id=\"id_btnMyTaxToggle\"]/span"));
+        myTaxDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("id_linkRequestReActivation")).click();
+    }
+
+    @Then("^REACTIVATE TAX TYPE screen displayed$")
+    public void reactivate_tax_type_screen_displayed() throws Throwable {
+        WebElement taxTypeDropdown = driver.findElement(By.xpath("//*[@id=\"id_reactivateTaxTypeForm\"]/div[1]/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/label"));
+        Assert.assertTrue(taxTypeDropdown.isEnabled());
+
+        WebElement reactivationDate = driver.findElement(By.id("id_reactivationDate"));
+        Assert.assertTrue(reactivationDate.isEnabled());
+
+        WebElement reasonDropdown = driver.findElement(By.xpath("//*[@id=\"id_reactivateTaxTypeForm\"]/div[1]/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/label"));
+        Assert.assertTrue(reasonDropdown.isEnabled());
+
+        WebElement notesField = driver.findElement(By.id("id_notes"));
+        Assert.assertTrue(notesField.isEnabled());
+
+    }
+
+    @And("^enters reactivation date$")
+    public void enters_reactivation_date() throws Throwable {
+        WebElement reactivationDateInput=driver.findElement(By.id("id_reactivationDate"));
+        reactivationDateInput.sendKeys(todaysDate());
+    }
+
+    @And("^enters reason for reactivation$")
+    public void enters_reason_for_reactivation() throws Throwable {
+        WebElement reasonDropdown=driver.findElement(By.xpath("//*[@id=\"id_reactivateTaxTypeForm\"]/div[1]/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        reasonDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_reactivateTaxTypeForm\"]/div[1]/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[2]"));
+    }
+
+    @And("^clicks reactivation Save Button$")
+    public void clicks_reactivation_save_button() throws Throwable {
+        WebElement saveBtn=driver.findElement(By.id("btnSubmit"));
+        saveBtn.click();
+    }
+
+    @And("^enters number of employees as \"([^\"]*)\"$")
+    public void enters_number_of_employees_as_something(String strArg1) throws Throwable {
+        Thread.sleep(3000);
+        WebElement employeeNo=driver.findElement(By.id("id_noOfEmployees"));
+        employeeNo.sendKeys(strArg1);
+    }
+
+    //--------------------------geeta code----------------------------------------------------------------///
+    ///////--------------------------geeta code----------------------------------------------------------------///
+
+    @When("^User clicks login as Applicant$")
+    public void user_clicks_login_as_applicant() throws Throwable {
+        Thread.sleep(5000);
+        WebElement taxPayer = driver.findElement(By.xpath("/html/body/trips-app/div/app-portal-home/div/div/div[1]/div[3]/div[2]/p/a"));
+        taxPayer.click();
+    }
+
+    @And("^clicks register now$")
+    public void clicks_register_now() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.findElement(By.id("id_linkRegisterNow")).click();
+    }
+
+    @Then("^create portal credential page is displayed$")
+    public void create_portal_credential_page_is_displayed() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        WebElement header=driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/ng-component/div"));
+        Assert.assertTrue(header.isDisplayed());
+    }
+
+    @Then("^successfully logged in to appplicant portal$")
+    public void successfully_logged_in_to_appplicant_portal() throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,60);
+        WebElement nav = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[1]/ul/li[1]")));
+        Assert.assertTrue(nav.isDisplayed());
+        Thread.sleep(4000);
+    }
+
+    @Then("^successfully logged in to organisation portal$")
+    public void successfully_logged_in_to_organisation_portal() throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,30);
+        WebElement nav = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"id_OrgForm\"]/form-wizard/div/div/div[1]/ul/li[1]")));
+        Assert.assertTrue(nav.isDisplayed());
+        Thread.sleep(4000);
+    }
+
+    @Given("^user clicks applicant submit button with fields blank$")
+    public void user_clicks_applicant_submit_button_with_fields_blank() throws Throwable {
+        WebElement submitBtn=driver.findElement(By.id("id_btnSubmit"));
+        Assert.assertTrue(submitBtn.isDisplayed());
+    }
+
+    @Then("^submit button should not be clickable$")
+    public void submit_button_should_not_be_clickable() throws Throwable {
+        WebElement submitBtn=driver.findElement(By.id("id_btnSubmit"));
+        Assert.assertFalse(submitBtn.isEnabled());
+    }
+
+    @Given("^user inputs identification details$")
+    public void user_inputs_identification_details(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+
+        WebElement firstNameInput=driver.findElement(By.id("id_firstName"));
+        firstNameInput.sendKeys(data.get(0).get(1));
+
+        WebElement lastNameInput=driver.findElement(By.id("id_lastName"));
+        lastNameInput.sendKeys(data.get(1).get(1));
+
+        WebElement genderDropDown=driver.findElement(By.xpath("//*[@id=\"id_applicantSignupForm\"]/div[1]/tb-dropdown/div/div[2]/p-dropdown/div/div[3]"));
+        genderDropDown.click();
+        Thread.sleep(2000);
+        // clicks male from dropdown
+        driver.findElement(By.xpath("//*[@id=\"id_applicantSignupForm\"]/div[1]/tb-dropdown/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[3]")).click();
+
+        WebElement DOBInput=driver.findElement(By.id("id_dateOfBirth"));
+        DOBInput.sendKeys(data.get(2).get(1));
+
+        WebElement POBInput=driver.findElement(By.id("id_placeOfBirth"));
+        POBInput.sendKeys(data.get(3).get(1));
+
+        WebElement IdInput=driver.findElement(By.id("id_idenNumber"));
+        IdInput.sendKeys(data.get(4).get(1));
+
+        WebElement issueDate=driver.findElement(By.id("id_IssueDate"));
+        issueDate.sendKeys(data.get(5).get(1));
+
+        WebElement expiryDate=driver.findElement(By.id("id_expiryDate"));
+        expiryDate.sendKeys(data.get(6).get(1));
+
+        // clicks on country drop down then enters value in datatable
+        WebElement countryDropdown=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        countryDropdown.click();
+        Thread.sleep(2000);
+        WebElement countryInput=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+        countryInput.sendKeys(data.get(7).get(1));
+
+        //clicks on the search result in drop down after entering country
+        WebElement firstEntry=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li"));
+        firstEntry.click();
+
+    }
+
+    @When("^user selects correct (.+) and (.+)$")
+    public void user_selects_correct_and(String taxpayerregistrationtype, String identificationtype) throws Throwable {
+        WebElement registrationType=driver.findElement(By.xpath("//span[contains(text(),'"+taxpayerregistrationtype+"')]"));
+        registrationType.click();
+
+        WebElement identificationDropdown=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]/span"));
+        identificationDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+identificationtype+"')]")).click();
+
+        // clicks on nationality down then enters value in datatable
+        try {
+            WebElement nationalityDropdown=driver.findElement(By.xpath("//*[@id=\"id_applicantSignupForm\"]/div[1]/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+            nationalityDropdown.click();
+            Thread.sleep(2000);
+            WebElement nationalityInput = driver.findElement(By.xpath("//*[@id=\"id_applicantSignupForm\"]/div[1]/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+            nationalityInput.sendKeys("malawi");
+
+            //clicks on the search result in drop down after entering country
+            WebElement myNationality = driver.findElement(By.xpath("//*[@id=\"id_applicantSignupForm\"]/div[1]/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li"));
+            myNationality.click();
+        } catch(NoSuchElementException | StaleElementReferenceException e) {
+
+        }
+
+    }
+
+    @And("^clicks create portal credential validate id button$")
+    public void clicks_create_portal_credential_validate_id_button() throws Throwable {
+        WebElement validateId=driver.findElement(By.id("id_btnValidate"));
+        validateId.click();
+    }
+
+    @Then("^successful validation message appears$")
+    public void successful_validation_message_appears() throws Throwable {
+        Thread.sleep(5000);
+        WebElement validateId=driver.findElement(By.id("id_btnValidate"));
+        Assert.assertFalse(validateId.isEnabled());
+    }
+
+    @Given("^user clicks contacts$")
+    public void user_clicks_contacts() throws Throwable {
+//        WebElement contacts=driver.findElement(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[1]/ul/li[2]"));
+//        if(contacts.isEnabled()){
+//            contacts.click();
+//        }else {
+        driver.findElement(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[2]/div[3]/button")).click();
+//        }
+//        Thread.sleep(3000);
+    }
+
+    @Given("^user clicks Personal Details$")
+    public void user_clicks_personal_details() throws Throwable {
+        WebElement personalDetails=driver.findElement(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[1]/ul/li[1]"));
+        personalDetails.click();
+    }
+
+    @Given("^user enters valid (.+) and (.+)$")
+    public void user_enters_valid_and(String email, String password) throws Throwable {
+        WebElement emailInput=driver.findElement(By.id("id_email"));
+        emailInput.sendKeys(email);
+
+        WebElement confirmEmailInput=driver.findElement(By.id("id_confirmEmail"));
+        confirmEmailInput.sendKeys(email);
+
+        WebElement passwordInput=driver.findElement(By.id("id_password"));
+        passwordInput.sendKeys(password);
+
+        WebElement confirmPasswordInput=driver.findElement(By.id("id_confirmPassword"));
+        confirmPasswordInput.sendKeys(password);
+    }
+
+    @And("^attaches id document (.+)$")
+    public void attaches_id_document(String path) throws Throwable {
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath("//*[@id=\"id_fileChoose\"]/div/div[2]/div/div/div[1]/span")).click();
+        driver.switchTo()
+                .activeElement()
+                .sendKeys(
+                        path);
+        driver.switchTo();
+        Actions builder = new Actions(driver);
+        builder.sendKeys(Keys.ESCAPE).perform();
+    }
+
+    @And("^checks captcha$")
+    public void checks_captcha() throws Throwable {
+        Thread.sleep(2000);
+        WebElement captcha=driver.findElement(By.xpath("//*[@id=\"recaptcha-anchor\"]/div[1]"));
+        captcha.click();
+    }
+
+
+    @And("^clicks the submit button$")
+    public void clicks_the_submit_button() throws Throwable {
+        WebElement submitBtn=driver.findElement(By.id("id_btnSubmit"));
+        submitBtn.click();
+    }
+
+    @And("^enters Portal email \"([^\"]*)\" and password \"([^\"]*)\"$")
+    public void enters_portal_email_something_and_password_something(String strArg1, String strArg2) throws Throwable {
+        Thread.sleep(5000);
+        WebElement emailInput=driver.findElement(By.id("id_userName"));
+        emailInput.sendKeys(strArg1);
+
+        WebElement passwordInput=driver.findElement(By.id("id_password"));
+        passwordInput.sendKeys(strArg2);
+
+        WebElement loginBtn=driver.findElement(By.id("btnSubmit"));
+        loginBtn.click();
+
+    }
+
+    @And("^user enters Applicant Individual details$")
+    public void user_enters_applicant_individual_details(DataTable table) throws Throwable {
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        List<List<String>> data =table.asLists();
+
+        WebElement firstNameInput=driver.findElement(By.id("id_firstName"));
+        firstNameInput.clear();
+        firstNameInput.sendKeys(data.get(0).get(1));
+
+        WebElement lastNameInput=driver.findElement(By.id("id_lastName"));
+        lastNameInput.clear();
+        lastNameInput.sendKeys(data.get(1).get(1));
+
+        WebElement dob=driver.findElement(By.id("id_dateOfBirth"));
+        dob.clear();
+        dob.sendKeys(data.get(2).get(1));
+        Thread.sleep(2000);
+//        driver.findElement(By.xpath("/html/body/div/div/div[2]/table/tbody/tr[2]/td[7]/a")).click();
+
+
+        Thread.sleep(2000);
+
+//        driver.findElement(By.xpath("/html/body/div/div/div[2]/table/tbody/tr[1]/td[1]/a")).click();
+
+        WebElement pobInput=driver.findElement(By.id("id_placeOfBirth"));
+        pobInput.clear();
+        pobInput.sendKeys(data.get(3).get(1));
+
+        WebElement categoryDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        categoryDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(4).get(1)+"')]")).click();
+
+        WebElement titleDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        titleDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(5).get(1)+"')]")).click();
+
+        WebElement genderDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[4]/div/div[2]/p-dropdown/div/div[3]"));
+        genderDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(6).get(1)+"')]")).click();
+
+        WebElement maritalDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[5]/div/div[2]/p-dropdown/div/div[3]"));
+        maritalDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(7).get(1)+"')]")).click();
+
+        WebElement nationalityDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[6]/div/div[2]/p-dropdown/div/div[3]"));
+        nationalityDropdown.click();
+        Thread.sleep(2000);
+        WebElement nationalityInput=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[6]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+        nationalityInput.sendKeys(data.get(8).get(1));
+
+        //clicks on the search result in drop down after entering country
+        WebElement oneEntry=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[6]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li"));
+        oneEntry.click();
+
+        // clicks on country drop down then enters value in datatable
+        WebElement countryDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[7]/div/div[2]/p-dropdown/div/div[3]"));
+        countryDropdown.click();
+        Thread.sleep(2000);
+        WebElement countryInput=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[7]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+        countryInput.sendKeys(data.get(8).get(1));
+
+        //clicks on the search result in drop down after entering country
+        WebElement firstEntry=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[7]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li"));
+        firstEntry.click();
+
+        WebElement taxOfficeDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown[8]/div/div[2]/p-dropdown/div/div[3]"));
+        taxOfficeDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(9).get(1)+"')]")).click();
+
+        WebElement reasonTinDropdown=driver.findElement(By.xpath("//*[@id=\"id_indPersonalDetailForm\"]/div/div/tb-dropdown-with-othertext/div/div[2]/p-dropdown/div/div[3]"));
+        reasonTinDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(10).get(1)+"')]")).click();
+    }
+
+    @And("^clicks save as draft$")
+    public void clicks_save_as_draft() throws Throwable {
+        WebElement saveDraftBtn=driver.findElement(By.xpath("//*[@id=\"id_IndForm\"]/form-wizard/div/div/div[5]/div/div[2]/button"));
+        saveDraftBtn.click();
+    }
+
+    @Then("^success message and exit confirmation dislayed$")
+    public void success_message_and_exit_confirmation_dislayed() throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver,20);
+        WebElement Message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Exit Confirmation')]")));
+        if(Message.isDisplayed()) {
+            Assert.assertTrue("Error message displayed",true);
+        }else {
+            Assert.fail("No Error message displayed");
+        }
+
+        //  click yes to exit confirmation modal
+        driver.findElement(By.xpath("/html/body/trips-app/p-confirmdialog/div/div[3]/button[1]")).click();
+    }
+
+    @Given("^user clicks next for more details$")
+    public void user_clicks_next_for_more_details() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        WebElement nextBtn=driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[2]/div[3]/button"));
+        nextBtn.click();
+        Thread.sleep(5000);
+    }
+    @And("^clicks new$")
+    public void clicks_new() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        Thread.sleep(4000);
+        WebElement newBtn=driver.findElement(By.id("btnAdd"));
+        newBtn.click();
+    }
+
+    @And("^inputs contact purpose as (.+) and contact detail as (.+)$")
+    public void inputs_contact_purpose_as_and_contact_detail_as(String purpose, String detail) throws Throwable {
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        WebElement purposeDropdown=driver.findElement(By.xpath("//*[@id=\"id_contactForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        purposeDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[text()='"+purpose+"']")).click();
+
+        WebElement contactDetailInput=driver.findElement(By.id("id_contactDetail"));
+        contactDetailInput.sendKeys(detail);
+    }
+
+    @And("^clicks update contact button$")
+    public void clicks_update_contact_button() throws Throwable {
+        WebElement updateBtn=driver.findElement(By.id("btnSave"));
+        updateBtn.click();
+    }
+
+    @Then("^contact successfully saved$")
+    public void contact_successfully_saved() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        WebElement contactsRow=driver.findElement(By.xpath("//*[@id=\"id_contactForm\"]/div[1]/tb-dropdown/div/div[3]"));
+        Assert.assertTrue(contactsRow.isDisplayed());
+    }
+
+    @Then("^identification successfully saved$")
+    public void identification_successfully_saved() throws Throwable {
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        WebElement contactsRow=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div[1]"));
+        Assert.assertTrue(contactsRow.isDisplayed());
+    }
+
+    @And("^inputs identification type as (.+) and identification number (.+)$")
+    public void inputs_identification_type_as_and_identification_number(String identification, String number) throws Throwable {
+        WebElement identificationDropdown=driver.findElement(By.xpath("//*[@id=\"id_identificationForm\"]/div[2]/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        identificationDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+identification+"')]")).click();
+
+        WebElement identifyNumberInput=driver.findElement(By.id("id_idenNumber"));
+        identifyNumberInput.sendKeys(number);
+
+    }
+    @And("^inputs issue date (.+) and expiry date (.+)$")
+    public void inputs_issue_date_and_expiry_date(String issue, String expiry) throws Throwable {
+        WebElement issueDateInput=driver.findElement(By.id("id_IssueDate"));
+        issueDateInput.sendKeys(issue);
+
+        WebElement expiryDateInput=driver.findElement(By.id("id_expiryDate"));
+        expiryDateInput.sendKeys(expiry);
+    }
+
+    @And("^clicks identification new button$")
+    public void clicks_identification_new_button() throws Throwable {
+        driver.findElement(By.xpath(Pro.getProperty("newBtnIdentification"))).click();
+//        driver.findElement(By.xpath("//button[contains(text(),'New')]"))
+    }
+
+    @And("^clicks update identification button$")
+    public void clicks_update_identification_button() throws Throwable {
+        Thread.sleep(4000);
+
+//        WebElement updateBtn=driver.findElement(By.id("btnSave"));
+        WebElement updateBtn=driver.findElement(By.xpath(Pro.getProperty("addIdentificationBtn")));
+        updateBtn.click();
+    }
+
+    @And("^inputs occupation status (.+) and main category (.+) and precise category (.+)$")
+    public void inputs_occupation_status_and_main_category_and_precise_category(String occupation, String category, String precise) throws Throwable {
+        WebElement occupationDropdown=driver.findElement(By.xpath("//*[@id=\"id_occupationForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        occupationDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+occupation+"')]")).click();
+
+        WebElement categoryDropdown=driver.findElement(By.xpath("//*[@id=\"id_occupationForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        categoryDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+category+"')]")).click();
+
+        WebElement preciseDropdown=driver.findElement(By.xpath("//*[@id=\"id_occupationForm\"]/div/div/tb-dropdown[3]/div/div[2]/p-dropdown/div/div[3]"));
+        preciseDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+precise+"')]")).click();
+
+    }
+
+    @Then("^registration is successful$")
+    public void registration_is_successful() throws Throwable {
+        Thread.sleep(3000);
+        WebElement success=driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/ng-component/div/div"));
+        Assert.assertTrue(success.isDisplayed());
+    }
+
+    @And("^clicks address new button$")
+    public void clicks_address_new_button() throws Throwable {
+        driver.findElement(By.id("id_newAddress")).click();
+    }
+    @And("^inputs Addres type(.+) and house number (.+) and street (.+) and town (.+)$")
+    public void inputs_addres_type_and_house_number_and_street_and_town(String address, String number, String street, String town) throws Throwable {
+        WebElement addressDropdown=driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        addressDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+address+"')]")).click();
+
+        driver.findElement(By.id("id_houseNumber")).sendKeys(number);
+
+        driver.findElement(By.id("id_streetName")).sendKeys(street);
+
+        driver.findElement(By.id("id_townCity")).sendKeys(town);
+
+
+        // clicks on country drop down then enters value in datatable
+        WebElement countryDropdown=driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        countryDropdown.click();
+        Thread.sleep(2000);
+        WebElement countryInput=driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+        countryInput.sendKeys("kenya");
+
+        //clicks on the search result in drop down after entering country
+        WebElement firstEntry=driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li"));
+        firstEntry.click();
+
+    }
+
+    @And("^clicks update address button$")
+    public void clicks_update_address_button() throws Throwable {
+        Thread.sleep(3000);
+        WebElement updateBtn=driver.findElement(By.xpath(Pro.getProperty("addAddressBtn")));
+        Assert.assertTrue(updateBtn.isEnabled());
+        updateBtn.click();
+    }
+
+    @Given("^user clicks organization details$")
+    public void user_clicks_organization_details() throws Throwable {
+        driver.findElement(By.xpath("//*[@id=\"id_OrgForm\"]/form-wizard/div/div/div[1]/ul/li[1]")).click();
+    }
+    @And("^user enters organisation details$")
+    public void user_enters_organisation_details(DataTable table) throws Throwable {
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        List<List<String>> data =table.asLists();
+
+        WebElement categoryDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]"));
+        categoryDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(0).get(1)+"')]")).click();
+
+        WebElement orgNameInput=driver.findElement(By.id("id_orgName"));
+        orgNameInput.clear();
+        orgNameInput.sendKeys(data.get(1).get(1));
+
+        WebElement prefOfficeDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]"));
+        prefOfficeDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(2).get(1)+"')]")).click();
+
+        WebElement tinReasonDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown-with-othertext/div/div[2]/p-dropdown/div/div[3]"));
+        tinReasonDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(3).get(1)+"')]")).click();
+
+        WebElement DOIInput=driver.findElement(By.id("id_dateOfIncorporation"));
+        DOIInput.clear();
+        DOIInput.sendKeys(data.get(4).get(1));
+
+        WebElement placeDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[3]/div/div[2]/p-dropdown/div/div[3]"));
+        placeDropdown.click();
+        Thread.sleep(2000);
+        WebElement placeInput=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[3]/div/div[2]/p-dropdown/div/div[4]/div[1]/input"));
+        placeInput.sendKeys(data.get(5).get(1));
+        driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[3]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li")).click();
+
+        WebElement endDayDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[4]/div/div[2]/p-dropdown/div/div[3]"));
+        endDayDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[4]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[2]")).click();
+
+        WebElement endmonthDropdown=driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[5]/div/div[2]/p-dropdown/div/div[3]"));
+        endmonthDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_orgDetailForm\"]/div/div/tb-dropdown[5]/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[2]")).click();
+
+        WebElement capitalSourceInput=driver.findElement(By.id("id_sourceOfCapital"));
+        capitalSourceInput.sendKeys(data.get(6).get(1));
+
+    }
+
+    //.....................Verify fields......................................//
+    @And("^clicks new on business sector$")
+    public void clicks_new_on_business_sector() throws Throwable {
+        Thread.sleep(5000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[2]/div/tb-business-sector-list/div/div/form/div[1]/div/div/button[1]")).click();
+    }
+
+    @And("^Fill business sector details and click next$")
+    public void fill_business_sector_details_and_click_next(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[2]/div/tb-business-sector-list/div/div/form/div[3]/div/business-sector/div/form/div/div/tb-dropdown/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1500);
+        driver.findElement(By.xpath("//*[@id=\"id_businessSectorForm\"]/div/div/tb-dropdown/div/div[2]/p-dropdown/div/div[4]/div[2]/ul/li[2]")).click();
+
+        Thread.sleep(1000);
+//        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(0).get(1)+"')]")).click();
+        driver.findElement(By.xpath("//*[@id='id_businessSectorForm']/div/div/tb-checkbox/div/div[2]/p-checkbox/div/div[2]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[2]/div/tb-business-sector-list/div/div/form/div[4]/div[2]/div/button[1]")).click();
+
+    }
+
+    @And("^click next on business sector$")
+    public void click_next_on_business_sector() throws Throwable {
+        driver.findElement(By.xpath("//*[@id=\"id_OrgForm\"]/form-wizard/div/div/div[5]/div/div[3]/div/button")).click();
+    }
+
+    @And("^Fill in contact details and click next$")
+    public void fill_in_contact_details_and_click_next(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+//        driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-checkbox/div/div[2]/p-checkbox/div/div[2]/span")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[3]/div/tb-contact-list/div/div/form/div[1]/div/div/button[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"id_contactForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(0).get(1)+"')]")).click();
+        driver.findElement(By.id("id_contactDetail")).sendKeys(data.get(1).get(1));
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[3]/div/tb-contact-list/div/div/form/div[4]/div[2]/div/button[1]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[5]/div/div[3]/div/button")).click();
+    }
+    @And("^Add address details and click next$")
+    public void add_address_details_and_click_next(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[6]/div/tb-address-list/div/div/form/div[1]/div/div/button[1]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-checkbox/div/div[2]/p-checkbox")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[1]/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1000);
+
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(0).get(1)+"')]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("id_townCity")).sendKeys(data.get(1).get(1));
+        driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[2]/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(2).get(1)+"')]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"id_addressForm\"]/div/div/tb-dropdown[3]/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(3).get(1)+"')]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[6]/div/tb-address-list/div/div/form/div[4]/div[2]/div/button[1]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[5]/div/div[3]/div/button")).click();
+    }
+    @And("^Fill directors details and click next$")
+    public void fill_directors_details_and_click_next(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[7]/div/tb-director-list/div/div/form/div[1]/div/div/button[1]")).click();
+        driver.findElement(By.id("id_relationTin")).sendKeys(data.get(0).get(1));
+        driver.findElement(By.id("id_relationName")).sendKeys(data.get(1).get(1));
+        driver.findElement(By.id("id_startDate")).sendKeys("05/08/2020");
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[7]/div/tb-director-list/div/div/form/div[4]/div[2]/div/button[1]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[5]/div/div[3]/div/button")).click();
+    }
+    @And("^Fill in attachment details and click next$")
+    public void fill_in_attachment_details_and_click_next(DataTable table) throws Throwable {
+        List<List<String>> data =table.asLists();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[8]/div/tb-attachment-list/div/div/form/div[1]/div/div/button[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"id_attachmentForm\"]/div/div/tb-dropdown/div/div[2]/p-dropdown/div/div[3]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'"+data.get(0).get(1)+"')]")).click();
+        driver.findElement(By.id("id_reference")).sendKeys(data.get(1).get(1));
+        driver.findElement(By.xpath("//*[@id=\"id_fileChoose\"]/div/div[2]/div/div/div[1]/span/input")).sendKeys(data.get(2).get(1));
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[4]/div/wizard-step[8]/div/tb-attachment-list/div/div/form/div[4]/div[2]/div/button[1]")).click();
+        driver.findElement(By.xpath("/html/body/trips-app/div/ng-component/div/ng-component/ng-component/div/div/form/form-wizard/div/div/div[5]/div/div[3]/div/button")).click();
+    }
+
+    @Then("^Success message is displayed \"([^\"]*)\"$")
+    public void verify_success(String Message) {
+        WebDriverWait wait = new WebDriverWait(driver, 100);
+        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'" + Message + "')]")));
+
+        if (successMessage.isDisplayed()) {
+            System.out.println("Success message ('" + Message + "') has been displayed");
+            Assert.assertTrue(true);
+        } else {
+            Assert.fail();
+        }
+    }
 }
