@@ -62,27 +62,29 @@ Scenario Outline: UAT_TCS 01.01.4: To verify the process of Registering an indiv
 
 #@[SUC:01-01]
  Scenario Outline: Individual - [SUC:01-02] Approve Taxpayer [SUC:01-02] Approve Taxpayer (UAT_TCS 02.01.1)To verify the process of Approving Taxpayer Registration
-  Given Open CRM URL Module
-  And Close Popup Window
-  And Click start search
-  Then switch to frame
-  When enters reference number in search results
-  And Pick registration case
-  Then Goto view AttachmentDetails screen
-  And Download the Attachment
-  Then switch to frame
-  Then Select Identification Outcome dropdown value for Individual Taxpayer Approval
-  And Click on NextStage button
-  Then switch to frame
-  Then wait for duplicate check
-And Click on NextStage button
-  Then switch to frame
-  And Select Approval outcome dropdown value to Approve"<Approve>"
-  Then Click on Save button
-  And Verify the String "<Read>"
+   Given Open CRM URL Module
+   And Close Popup Window
+   And Click start search
+   Then switch to frame
+   When enters reference number in search results
+   And Pick registration case
+   Then switch to frame
+   And Click on NextStage button
+   Then Goto view AttachmentDetails screen
+   And Download the Attachment
+   Then switch to frame
+   Then Select Identification Outcome dropdown value for Individual Taxpayer Approval
+   And Click on NextStage button
+   Then switch to frame
+   Then wait for duplicate check
+   And Click on NextStage button
+   Then switch to frame
+   And Select Approval outcome dropdown value to Approve <Approve>
+   Then Click on Save button
+   And Verify the String "<Read>"
 
-Examples:
-| Approve |Read |
-|Approve|Approved|
+   Examples:
+     | Approve |Read |
+     |First Name|Approve|
        
     

@@ -1909,13 +1909,13 @@ public class steps extends BaseClass {
         action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
     }
 
-    @Then("^Select Approval outcome dropdown value to Approve\"([^\"]*)\"$")
-    public void select_Approval_outcome_dropdown_value_to_Approve(String Approve) throws Throwable {
+    @And("^Select Approval outcome dropdown value to Approve (.+)$")
+    public void select_approval_outcome_dropdown_value_to_approve(String confirmation) throws Throwable {
         driver.switchTo().frame("WebResource_RegistrationApplicationAngular");
         Thread.sleep(3000);
 
-        WebDriverWait wait=new WebDriverWait(driver,100);
-        WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Download']")));
+        WebDriverWait wait=new WebDriverWait(driver,120);
+        WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='"+confirmation+"']")));
         Assert.assertTrue(downloadAttach.isDisplayed());
 
         driver.switchTo().defaultContent();
@@ -1924,7 +1924,7 @@ public class steps extends BaseClass {
         driver.switchTo().frame(specificframe);
         Thread.sleep(3000);
 
-        driver.findElement(By.id("header_process_tbg_approvaloutcome_c")).click();
+        driver.findElement(By.xpath("//div[@data-attributename='tbg_approvaloutcome']")).click();
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
     }
