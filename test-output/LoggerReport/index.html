@@ -51,6 +51,14 @@
 							</a>
 						</li>
 						<li>
+							<a href="exception.html">
+							<span class="nav-icon">
+							<i class="fa fa-warning"></i>
+							</span>
+							<span class="nav-text">Exceptions</span>
+							</a>
+						</li>
+						<li>
 							<a href="dashboard.html">
 							<span class="nav-icon">
 							<i class="fa fa-dashboard"></i>
@@ -95,11 +103,11 @@
 									</a>
 									<div class="dropdown-menu pt-0 mt-2 animate fadeIn">
 										<a class="dropdown-item" href="#"><span class="tf" status="pass"><i class="fa fa-dot-circle-o text-success"></i>Pass</span></a>
+										<a class="dropdown-item" href="#"><span class="tf" status="fail"><i class="fa fa-dot-circle-o text-danger"></i>Fail</span></a>
 										
 										
 										
-										
-										
+										<a class="dropdown-item" href="#"><span class="tf" status="skip"><i class="fa fa-dot-circle-o text-blue"></i>Skip</span></a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#"><span class="tf" status="clear"><i class="fa fa-dot-circle-o text-warn"></i>Clear</span></a>
 									</div>
@@ -112,8 +120,7 @@
 								        </span>
 							        </a>
 							        <div class="dropdown-menu pt-0 mt-2 animate fadeIn">
-						    	        <a class="dropdown-item" href="#"><span class="cf">@SUC:01-12</span></a>
-						    	        <a class="dropdown-item" href="#"><span class="cf">@UAT_TCS-03.03.4</span></a>
+						    	        <a class="dropdown-item" href="#"><span class="cf">@UAT_TCS-01.32.1</span></a>
 						    	        <div class="dropdown-divider"></div>
 						    	        <a class="dropdown-item" href="#"><span class="tf" status="clear"><i class="fa fa-dot-circle-o text-warn"></i>Clear</span></a>
 						    	      </div>
@@ -130,24 +137,23 @@
 								<div class="col-md-8 col-sm-12">
 									<div class="logger-content">
 										<h6 class="mb-3 ml-1">Test Logs</h6>
-											<div class="tsc" status="pass">
-											<div class="st pass test l0" 
+											<div class="tsc" status="fail">
+											<div class="st fail test l0" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:09</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">[[SUC:01-12] Submit Portal Application] started</span>
+												<span class="tt">09.25.2020 17:27:52</span>&nbsp;
+												<span class="ts">fail</span>&nbsp;&nbsp;
+												<span class="tn">[Print Registration Reports_TaxType] started</span>
 												
 											</div>
-											<div class="st pass test l1" 
-												tags="@SUC:01-12 @UAT_TCS-03.03.4"
+											<div class="st fail test l1" 
+												tags="@UAT_TCS-01.32.1"
 												devices="">
-												<span class="tt">08.28.2020 10:22:09</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">|---[UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal] started</span>
+												<span class="tt">09.25.2020 17:27:52</span>&nbsp;
+												<span class="ts">fail</span>&nbsp;&nbsp;
+												<span class="tn">|---[UAT_TCS 01.32.1-To Verify the Process of printing Tax Type Reports - Reactivated Tax Type List] started</span>
 												<span class="category-list">
-													<span class="category badge"><i class="fa fa-tag"></i> @SUC:01-12</span>
-													<span class="category badge"><i class="fa fa-tag"></i> @UAT_TCS-03.03.4</span>
+													<span class="category badge"><i class="fa fa-tag"></i> @UAT_TCS-01.32.1</span>
 												</span>
 												<span class="author-list">
 												</span>
@@ -158,14 +164,14 @@
 											<div class="st pass test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:09</span>&nbsp;
+												<span class="tt">09.25.2020 17:27:52</span>&nbsp;
 												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given User navigates to the Portal login page] started</span>
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given Open trips URL] started</span>
 												
 												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:17</span>&nbsp;
+													<span class="tt">09.25.2020 17:28:06</span>&nbsp;
 													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given User navigates to the Portal login page]</span>
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given Open trips URL]</span>
 													
 													<span class="td"></span>
 												</div>
@@ -173,106 +179,221 @@
 											<div class="st pass test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:17</span>&nbsp;
+												<span class="tt">09.25.2020 17:28:06</span>&nbsp;
 												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[When User clicks login as Applicant] started</span>
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And Login as Revenue Officer] started</span>
 												
 												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:23</span>&nbsp;
+													<span class="tt">09.25.2020 17:28:06</span>&nbsp;
 													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[When User clicks login as Applicant]</span>
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And Login as Revenue Officer]</span>
 													
-													<span class="td"></span>
+													<span class="td"><table class='runtime-table table-striped table'><tr><td>tripsuser</td><td>Passw0rd</td></tr></table></span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st fail test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:23</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And enters Portal email "max0@mailinator.com" and password "Passw0rd@123"] started</span>
+												<span class="tt">09.25.2020 17:28:17</span>&nbsp;
+												<span class="ts">fail</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click reporting > reports] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:29</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And enters Portal email "max0@mailinator.com" and password "Passw0rd@123"]</span>
+												<div class="st fail">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">fail</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click reporting > reports]</span>
 													
-													<span class="td"></span>
+													<span class="td">threw an exception<br><textarea disabled class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="MenuForm:j_idt29"]/ul/li[4]/a (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at ✽.Click reporting > reports(file:///E:/work/smoke/src/test/java/Features/Registration/Print%20Registration%20Reports_TaxType.feature:7)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="MenuForm:j_idt29"]/ul/li[4]/a"}
+  (Session info: chrome=85.0.4183.121)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'MAXIPAIN', ip: '172.16.16.22', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 85.0.4183.121, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\MAXWEL~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:52742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: b28062ccd425c2b75edebfda23fa7ac2
+*** Element info: {Using=xpath, value=//*[@id="MenuForm:j_idt29"]/ul/li[4]/a}
+	at jdk.internal.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:44)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:64)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:92)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:63)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:49)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:99)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:71)
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:140)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:118)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:192)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at io.cucumber.junit.Cucumber$RunCucumber.evaluate(Cucumber.java:227)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+</textarea></span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st skip test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:29</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then successfully logged in to appplicant portal] started</span>
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report to print "Reactivated Tax Type List"] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:56</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then successfully logged in to appplicant portal]</span>
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report to print "Reactivated Tax Type List"]</span>
 													
-													<span class="td"></span>
+													<span class="td">Step skipped</span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st skip test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:56</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given user clicks Personal Details] started</span>
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report file type "PDF"] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:56</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Given user clicks Personal Details]</span>
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report file type "PDF"]</span>
 													
-													<span class="td"></span>
+													<span class="td">Step skipped</span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st skip test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:22:56</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And user enters Applicant Individual details] started</span>
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select tax office "All"] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:22:56</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And user enters Applicant Individual details]</span>
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select tax office "All"]</span>
 													
-													<span class="td"><table class='runtime-table table-striped table'><tr><td>FirstName</td><td>Max</td></tr><tr><td>LastName</td><td>Mende</td></tr><tr><td>DOB</td><td>01/01/1990</td></tr><tr><td>POB</td><td>Lilongwe</td></tr><tr><td>category</td><td>Diplomat</td></tr><tr><td>title</td><td>DR</td></tr><tr><td>Gender</td><td>M</td></tr><tr><td>Marital</td><td>Married</td></tr><tr><td>Nationality</td><td>malawi</td></tr><tr><td>Tax Office</td><td>Balaka</td></tr><tr><td>Reason Application</td><td>Am a company director</td></tr><tr><td>country</td><td>Kenya</td></tr></table></span>
+													<span class="td">Step skipped</span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st skip test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:23:24</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And clicks save as draft] started</span>
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click run report "frmReportDetails:RunReport"] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:23:24</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[And clicks save as draft]</span>
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click run report "frmReportDetails:RunReport"]</span>
 													
-													<span class="td"></span>
+													<span class="td">Step skipped</span>
 												</div>
 											</div>
-											<div class="st pass test l2" 
+											<div class="st skip test l2" 
 												tags=""
 												devices="">
-												<span class="tt">08.28.2020 10:23:24</span>&nbsp;
-												<span class="ts">pass</span>&nbsp;&nbsp;
-												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then success message and exit confirmation dislayed] started</span>
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Verify file "Reactivated Tax Type List.pdf" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"] started</span>
 												
-												<div class="st pass">
-													<span class="tt">08.28.2020 10:23:25</span>&nbsp;
-													<span class="ts">pass</span>&nbsp;&nbsp; 
-													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then success message and exit confirmation dislayed]</span>
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Verify file "Reactivated Tax Type List.pdf" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"]</span>
 													
-													<span class="td"></span>
+													<span class="td">Step skipped</span>
+												</div>
+											</div>
+											<div class="st skip test l2" 
+												tags=""
+												devices="">
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report file type "EXCEL"] started</span>
+												
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Select report file type "EXCEL"]</span>
+													
+													<span class="td">Step skipped</span>
+												</div>
+											</div>
+											<div class="st skip test l2" 
+												tags=""
+												devices="">
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click run report "frmReportDetails:RunReport"] started</span>
+												
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Click run report "frmReportDetails:RunReport"]</span>
+													
+													<span class="td">Step skipped</span>
+												</div>
+											</div>
+											<div class="st skip test l2" 
+												tags=""
+												devices="">
+												<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+												<span class="ts">skip</span>&nbsp;&nbsp;
+												<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Verify file "Reactivated Tax Type List.xls" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"] started</span>
+												
+												<div class="st skip">
+													<span class="tt">09.25.2020 17:28:42</span>&nbsp;
+													<span class="ts">skip</span>&nbsp;&nbsp; 
+													<span class="tn">&nbsp;&nbsp;&nbsp;&nbsp;|---[Then Verify file "Reactivated Tax Type List.xls" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"]</span>
+													
+													<span class="td">Step skipped</span>
 												</div>
 											</div>
 											</div>

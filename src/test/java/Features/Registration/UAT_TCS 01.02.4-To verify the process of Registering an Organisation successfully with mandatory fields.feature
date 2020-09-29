@@ -33,7 +33,7 @@ Scenario Outline:UAT_TCS 01.02.4	To verify the process of Registering an Organis
     | Attachment Date|21082016|20 1|
     |Attachment Pasport|Business Registration Certificate|21 2|
     | Reference number|ug|22 3|
-    |File upload |C:\Users\v-bakam\Desktop\id_doc.png|23 4|
+    |File upload |C:\id_doc.png|23 4|
     | Attachments|Doccument | 24 5|
     | Attachments|Certificate of Incorporation| 25 6|
     | Attachments|Letter Of Authorization| 26 7|

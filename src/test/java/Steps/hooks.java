@@ -26,7 +26,7 @@ public class hooks extends BaseClass {
     @After(order=1)
     public void AfterSelenium()
     {
-        driver.close();
+        //driver.close();
         System.out.println("Completed execution for the scenario :" + scenario.getName());
     }
 

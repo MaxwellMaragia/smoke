@@ -44,6 +44,7 @@
 		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
 						<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
+			<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
 			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
 		</ul>
 		<!-- report name -->
@@ -53,7 +54,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Aug 28, 2020 10:22:01 AM</span>
+			<span class='label blue darken-3 suite-start-time'>Sep 25, 2020 05:27:46 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -69,6 +70,8 @@
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
 										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+					<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+					<li status='skip'><a href='#!'>Skip <i class='material-icons cyan-text'>redo</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -80,8 +83,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@SUC:01-12</a></li>
-					<li><a href='#'>@UAT_TCS-03.03.4</a></li>
+					<li><a href='#'>@UAT_TCS-01.32.1</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -122,10 +124,10 @@
                     <canvas id='parent-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> feature(s) passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> feature(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> feature(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped
+                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> feature(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped
                 </div>
             </div>
         </div>
@@ -136,10 +138,10 @@
                     <canvas id='child-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> scenario(s) passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> scenario(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> scenario(s) failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> scenario(s) failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
                 </div>
@@ -152,12 +154,12 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>8</span> step(s) passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='18.182%'><span class='strong'>2</span> step(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> scenario(s) failed, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> skipped, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+                    <span class='strong tooltipped' data-position='top' data-tooltip='9.091%'>1</span> scenario(s) failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='72.727%'>8</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='72.727%'>0</span> others
                 </div>
             </div>
         </div>
@@ -175,11 +177,11 @@
 </div>	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
+				<li class='test displayed active has-leaf fail' status='fail' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>[SUC:01-12] Submit Portal Application</span>
-						<span class='test-time'>Aug 28, 2020 10:22:09 AM</span>
-						<span class='test-status right pass'>pass</span>
+						<span class='test-name'>Print Registration Reports_TaxType</span>
+						<span class='test-time'>Sep 25, 2020 05:27:52 PM</span>
+						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class="sr-filters bdd-filters">
@@ -188,47 +190,128 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-<div class='scenario node' test-id='2' status='pass'>
+<div class='scenario node' test-id='2' status='fail'>
 	<div class='category-list'>
-		<span class='category label'>@SUC:01-12</span>
-		<span class='category label'>@UAT_TCS-03.03.4</span>
+		<span class='category label'>@UAT_TCS-01.32.1</span>
 	</div>
-	<span class='duration right label'>0h 1m 15s+829ms</span>
+	<span class='duration right label'>0h 0m 50s+138ms</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span> Scenario: UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal</div>
+		<div class="scenario-name"><span class='status fail' title='fail'><i class='material-icons'>cancel</i></span> Scenario: UAT_TCS 01.32.1-To Verify the Process of printing Tax Type Reports - Reactivated Tax Type List</div>
 	</div>
 	<ul class='steps'>
 		<li test-id='5' class='node given pass' status='pass'>
-			<div class="step-name" title="Steps.steps.user_navigates_to_the_portal_login_page()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Given User navigates to the Portal login page</div>
+			<div class="step-name" title="Steps.steps.loadTripsLink()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Given Open trips URL</div>
 			<div class="node-step"></div>
 		</li>
-		<li test-id='6' class='node when pass' status='pass'>
-			<div class="step-name" title="Steps.steps.user_clicks_login_as_applicant()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>When User clicks login as Applicant</div>
-			<div class="node-step"></div>
+		<li test-id='6' class='node and pass' status='pass'>
+			<div class="step-name" title="Steps.steps.login_as_revenue_officer(io.cucumber.datatable.DataTable)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And Login as Revenue Officer</div>
+			<div class="node-step"><table class='runtime-table table-striped table'><tr><td>tripsuser</td><td>Passw0rd</td></tr></table></div>
 		</li>
-		<li test-id='7' class='node and pass' status='pass'>
-			<div class="step-name" title="Steps.steps.enters_portal_email_something_and_password_something(java.lang.String,java.lang.String)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And enters Portal email "max0@mailinator.com" and password "Passw0rd@123"</div>
-			<div class="node-step"></div>
+		<li test-id='7' class='node then fail' status='fail'>
+			<div class="step-name" title="Steps.steps.OpenReportsLink()"><span class='status fail' title='fail'><i class='material-icons'>cancel</i></span>Then Click reporting > reports</div>
+			<textarea disabled class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="MenuForm:j_idt29"]/ul/li[4]/a (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at ✽.Click reporting > reports(file:///E:/work/smoke/src/test/java/Features/Registration/Print%20Registration%20Reports_TaxType.feature:7)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="MenuForm:j_idt29"]/ul/li[4]/a"}
+  (Session info: chrome=85.0.4183.121)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'MAXIPAIN', ip: '172.16.16.22', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 85.0.4183.121, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\MAXWEL~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:52742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: b28062ccd425c2b75edebfda23fa7ac2
+*** Element info: {Using=xpath, value=//*[@id="MenuForm:j_idt29"]/ul/li[4]/a}
+	at jdk.internal.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:44)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:64)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:92)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:63)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:49)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:99)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:71)
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:140)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:118)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:192)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at io.cucumber.junit.Cucumber$RunCucumber.evaluate(Cucumber.java:227)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+</textarea>
 		</li>
-		<li test-id='8' class='node then pass' status='pass'>
-			<div class="step-name" title="Steps.steps.successfully_logged_in_to_appplicant_portal()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Then successfully logged in to appplicant portal</div>
-			<div class="node-step"></div>
+		<li test-id='8' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.select_report_to_print(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Select report to print "Reactivated Tax Type List"</div>
+			<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='9' class='node given pass' status='pass'>
-			<div class="step-name" title="Steps.steps.user_clicks_personal_details()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Given user clicks Personal Details</div>
-			<div class="node-step"></div>
+		<li test-id='9' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.select_report_file_type(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Select report file type "PDF"</div>
+			<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='10' class='node and pass' status='pass'>
-			<div class="step-name" title="Steps.steps.user_enters_applicant_individual_details(io.cucumber.datatable.DataTable)"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And user enters Applicant Individual details</div>
-			<div class="node-step"><table class='runtime-table table-striped table'><tr><td>FirstName</td><td>Max</td></tr><tr><td>LastName</td><td>Mende</td></tr><tr><td>DOB</td><td>01/01/1990</td></tr><tr><td>POB</td><td>Lilongwe</td></tr><tr><td>category</td><td>Diplomat</td></tr><tr><td>title</td><td>DR</td></tr><tr><td>Gender</td><td>M</td></tr><tr><td>Marital</td><td>Married</td></tr><tr><td>Nationality</td><td>malawi</td></tr><tr><td>Tax Office</td><td>Balaka</td></tr><tr><td>Reason Application</td><td>Am a company director</td></tr><tr><td>country</td><td>Kenya</td></tr></table></div>
+		<li test-id='10' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.select_tax_office(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Select tax office "All"</div>
+			<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='11' class='node and pass' status='pass'>
-			<div class="step-name" title="Steps.steps.clicks_save_as_draft()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>And clicks save as draft</div>
-			<div class="node-step"></div>
+		<li test-id='11' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.click_run_report(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Click run report "frmReportDetails:RunReport"</div>
+			<div class="node-step">Step skipped</div>
 		</li>
-		<li test-id='12' class='node then pass' status='pass'>
-			<div class="step-name" title="Steps.steps.success_message_and_exit_confirmation_dislayed()"><span class='status pass' title='pass'><i class='material-icons'>check_circle</i></span>Then success message and exit confirmation dislayed</div>
-			<div class="node-step"></div>
+		<li test-id='12' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.verify_file_has_been_downloaded_in_downloads_directory(java.lang.String,java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Verify file "Reactivated Tax Type List.pdf" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"</div>
+			<div class="node-step">Step skipped</div>
+		</li>
+		<li test-id='13' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.select_report_file_type(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Select report file type "EXCEL"</div>
+			<div class="node-step">Step skipped</div>
+		</li>
+		<li test-id='14' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.click_run_report(java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Click run report "frmReportDetails:RunReport"</div>
+			<div class="node-step">Step skipped</div>
+		</li>
+		<li test-id='15' class='node then skip' status='skip'>
+			<div class="step-name" title="Steps.steps.verify_file_has_been_downloaded_in_downloads_directory(java.lang.String,java.lang.String)"><span class='status skip' title='skip'><i class='material-icons'>redo</i></span>Then Verify file "Reactivated Tax Type List.xls" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"</div>
+			<div class="node-step">Step skipped</div>
 		</li>
 	</ul>
 </div>
@@ -274,15 +357,15 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@SUC:01-12</span>
+						<span class='category-name'>@UAT_TCS-01.32.1</span>
 						<span class='category-status right'>
-						<span class='label pass'>1</span>
+						<span class='label fail'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
+							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -296,42 +379,9 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Aug 28, 2020 10:22:09 AM</td>
-										<td class='linked' test-id='2'>UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal</td>
-										<td><span class='test-status pass'>pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@UAT_TCS-03.03.4</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Aug 28, 2020 10:22:09 AM</td>
-										<td class='linked' test-id='2'>UAT_TCS 03.03.4 To Verify the process of Saving Application in Applicant Portal</td>
-										<td><span class='test-status pass'>pass</span></td>
+										<td>Sep 25, 2020 05:27:52 PM</td>
+										<td class='linked' test-id='2'>UAT_TCS 01.32.1-To Verify the Process of printing Tax Type Reports - Reactivated Tax Type List</td>
+										<td><span class='test-status fail'>fail</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -347,7 +397,132 @@
 		</div>
 	</div>
 </div>
-<!-- category view --><!-- exception view --><div id='dashboard-view' class='view hide'>
+<!-- category view --><div id='exception-view' class='view hide'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='exception-collection' class='exception-collection'>
+				<li class='exception displayed active'>
+					<div class='exception-heading'>
+						<span class='exception-name'>org.openqa.selenium.TimeoutException</span>
+						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
+					</div>
+					<div class='exception-content hide'>
+						<div class='exception-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Sep 25, 2020 05:28:17 PM</td>
+										<td class='linked' test-id='7'>Then Click reporting > reports</td>
+										<td>
+											<textarea disabled class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@id="MenuForm:j_idt29"]/ul/li[4]/a (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at ✽.Click reporting > reports(file:///E:/work/smoke/src/test/java/Features/Registration/Print%20Registration%20Reports_TaxType.feature:7)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="MenuForm:j_idt29"]/ul/li[4]/a"}
+  (Session info: chrome=85.0.4183.121)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'MAXIPAIN', ip: '172.16.16.22', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 85.0.4183.121, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\MAXWEL~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:52742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: b28062ccd425c2b75edebfda23fa7ac2
+*** Element info: {Using=xpath, value=//*[@id="MenuForm:j_idt29"]/ul/li[4]/a}
+	at jdk.internal.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	at Steps.steps.OpenReportsLink(steps.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:44)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:64)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:92)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:63)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:49)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:99)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:71)
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:140)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:118)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:24)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:192)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at io.cucumber.junit.Cucumber$RunCucumber.evaluate(Cucumber.java:227)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+</textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='exception-name'></h5>
+		</div>
+	</div>
+</div>
+<!-- exception view --><div id='dashboard-view' class='view hide'>
 	<div class='card-panel transparent np-v'>
 		<h5>Dashboard</h5>
 
@@ -367,25 +542,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>8</div>
+					<div class='panel-lead'>11</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Aug 28, 2020 10:22:01 AM</div>
+					<div class='panel-lead'>Sep 25, 2020 05:27:46 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Aug 28, 2020 10:23:27 AM</div>
+			 		<div class='panel-lead'>Sep 25, 2020 05:28:42 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 1m 25s+600ms</div>
+					<div class='panel-lead'>0h 0m 56s+404ms</div>
 				</div>
 			</div>
 			<div class='col s6'>
@@ -401,21 +576,12 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@SUC:01-12</td>
+							<td>@UAT_TCS-01.32.1</td>
+							<td>0</td>
 							<td>1</td>
 							<td>0</td>
-							<td>0</td>
 							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@UAT_TCS-03.03.4</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
+									0%
 							</td>
 						</tr>
 					</table>
@@ -430,38 +596,38 @@
 		<script>
 			var statusGroup = {
                 parentCount: 1,
-				passParent: 1,
-				failParent: 0,
+				passParent: 0,
+				failParent: 1,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				exceptionsParent: 0,
+				exceptionsParent: 1,
 				childCount: 1,
-				passChild: 1,
-				failChild: 0,
+				passChild: 0,
+				failChild: 1,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
 				debugChild: 0,
-				exceptionsChild: 0,
-				grandChildCount: 8,
-				passGrandChild: 8,
-				failGrandChild: 0,
+				exceptionsChild: 1,
+				grandChildCount: 11,
+				passGrandChild: 2,
+				failGrandChild: 1,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
 				warningGrandChild: 0,
-				skipGrandChild: 0,
+				skipGrandChild: 8,
 				infoGrandChild: 0,
 				debugGrandChild: 0,
-				exceptionsGrandChild: 0,
+				exceptionsGrandChild: 9,
 			};
 		</script>
 		<script>
 			var timeline = {
-			        "[SUC:01-12] Submit Portal Application":75.829
+			        "Print Registration Reports_TaxType":50.138
 			};
 		</script>
 	

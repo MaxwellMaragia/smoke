@@ -65,7 +65,7 @@ public class steps extends BaseClass {
         driver.findElement(By.id(Pro.getProperty("BackOffice_UserName_ID"))).sendKeys(obj.get(0).get(0));
         driver.findElement(By.id(Pro.getProperty("BackOffice_Password_ID"))).clear();
         driver.findElement(By.id(Pro.getProperty("BackOffice_Password_ID"))).sendKeys(obj.get(0).get(1));
-        driver.findElement(By.id(Pro.getProperty("BackOffice_Login_ID"))).click();
+        driver.findElement(By.id("loginForm:j_idt18")).click();
     }
 
     //login to taxpayer portal
@@ -1183,7 +1183,7 @@ public class steps extends BaseClass {
 //    	driver.get("http://18.202.88.7:8001/trips-ui/faces/login/tripsLogin.xhtml");
 
 //        SIT
-        driver.get("https://backoffice.mra.mw:8443/trips-ui/faces/login/tripsLogin.xhtml");
+        driver.get(Pro.getProperty("MRA_BackOffice_URL"));
 
     }
     @When("^Enter the username \"(.*)\" and password \"(.*)\"$")
