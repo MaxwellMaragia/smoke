@@ -11,7 +11,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then Exemption Application Qualification Attributes pop up should be displayed
     When user  Click on Add under Attachment Schedule
     Then Exemption Application Attachment pop up should be displayed
-    When attachment added "C:\\test.png"
+    When attachment added "C:\Users\barnaby.kamau\Desktop\id_doc.png"
     Then attachment popup closed
     When User adds Declaration Info <applicant> <designation> <supervisorTIN>
     Then Exemption created successfully
@@ -20,7 +20,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
 
-  @[finder1]
+  @[finder2]
   Scenario: UAT_M7_10-02-CRM approve the Exemption Application(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -30,11 +30,13 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then switch to frame
     And enters Exemption reference number in search results
     When Click selected Reference Number
+#    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
     And clicks Approve from the dropdown
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
 
-  @[finder2]
+  @[finder1]
   Scenario Outline: UAT_M7_10-02-Apply for Exemption(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -45,7 +47,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then Exemption Application Qualification Attributes pop up should be displayed
     When user  Click on Add under Attachment Schedule
     Then Exemption Application Attachment pop up should be displayed
-    When attachment added "C:\\test.png"
+    When attachment added "C:\Users\barnaby.kamau\Desktop\id_doc.png"
     Then attachment popup closed
     When User adds Declaration Info <applicant> <designation> <supervisorTIN>
     Then Exemption created successfully
@@ -54,7 +56,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
 
-  @[finder2]
+  @[finder1]
   Scenario Outline: UAT_M7_10-02-CRM Reject the Exemption Application(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -136,7 +138,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN | exemptionCategory | ECRType | applicationStatus | reason                 | submissionType   |
       | %   | Exemption         | %       | Active            | Investigation Complete | reactivateReason |
 
-  @[finder1]-
+  @[finder1]
   Scenario Outline: UAT_M7_10-03-Verify the Process of Service Call Fails
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -147,7 +149,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then Exemption Application Qualification Attributes pop up should be displayed
     When user  Click on Add under Attachment Schedule
     Then Exemption Application Attachment pop up should be displayed
-    When attachment added "C:\\test.png"
+    When attachment added "C:\Users\barnaby.kamau\Desktop\id_doc.png"
     Then attachment popup closed
     When User adds Declaration Info <applicant> <designation> <supervisorTIN>
     Then Exemption created successfully
@@ -170,7 +172,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
 
-  @[finder1-]
+  @[finder1]
   Scenario Outline: UAT_M7_10-03-Apply for Exemption Cancellation(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login

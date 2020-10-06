@@ -65,7 +65,7 @@ public class steps extends BaseClass {
         driver.findElement(By.id(Pro.getProperty("BackOffice_UserName_ID"))).sendKeys(obj.get(0).get(0));
         driver.findElement(By.id(Pro.getProperty("BackOffice_Password_ID"))).clear();
         driver.findElement(By.id(Pro.getProperty("BackOffice_Password_ID"))).sendKeys(obj.get(0).get(1));
-        driver.findElement(By.id("loginForm:j_idt18")).click();
+//        driver.findElement(By.id("loginForm:j_idt18")).click();
     }
 
     //login to taxpayer portal
@@ -1846,7 +1846,7 @@ public class steps extends BaseClass {
     //--------------------approve crm-------------------------------------//
     @And("^Click start search$")
     public void click_start_search() throws Throwable {
-        driver.findElement(By.id("TabSearch")).click();
+        driver.findElement(By.id("findCriteriaButton")).click();
     }
 
     @And("^Pick registration case$")
@@ -1854,6 +1854,24 @@ public class steps extends BaseClass {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         List <WebElement> cases=driver.findElements(By.xpath("//div[@tabindex='0']"));
         cases.get(1).click();
+    }
+
+    @Then("^Goto view AttachmentDetails-Exemptions screen$")
+    public void goto_view_AttachmentDetails_screen_Exemptions() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("WebResource_ExemptionApplicationAngular"));
+//        driver.switchTo().frame("WebResource_ExemptionApplicationAngular");
+//        Thread.sleep(3000);
+        List<WebElement> element=driver.findElements(By.xpath(Pro.getProperty("Individual_NextStage_RefNum_DownloadFrame_DownloadLink_XPATH")));
+        for (WebElement ele : element)
+        {
+
+            JavascriptExecutor js1 = (JavascriptExecutor) driver;
+            js1.executeScript("arguments[0].scrollIntoView(true);",ele);
+
+        }
+        Thread.sleep(2000);
+
     }
 
     @Then("^Goto view AttachmentDetails screen$")
@@ -1879,7 +1897,7 @@ public class steps extends BaseClass {
         WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Download']")));
         downloadAttach.click();
         Thread.sleep(9000);
-        String downloadpath="C:\\Users\\v-bakam\\Downloads";
+        String downloadpath="C:\\Users\\barnaby.kamau\\Downloads";
         boolean isPresent = false;
         File dir = new File(downloadpath);
         File[] dir_contents = dir.listFiles();
@@ -1895,7 +1913,7 @@ public class steps extends BaseClass {
 
     }
     @Then("^Select Identification Outcome dropdown value for Individual Taxpayer Approval$")
-    public void select_Identification_Outcome_dropdown_value_for_Individual_Taxpayer_Approval() throws Throwable {
+    public void  select_Identification_Outcome_dropdown_value_for_Individual_Taxpayer_Approval() throws Throwable {
         driver.findElement(By.xpath("//span[text()='click to enter']")).click();
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
@@ -2849,7 +2867,7 @@ public class steps extends BaseClass {
 
     @Given("^Open CRM URL Module$")
     public void open_CRM_URL_Module() throws Throwable {
-        driver = BaseClass.getDriver();
+//        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
@@ -2883,12 +2901,24 @@ public class steps extends BaseClass {
 
     }
 
+//    @When("^enters reference number in search results-$")
+//    public void enters_in_search_results() throws Throwable {
+//        WebDriverWait wait=new WebDriverWait(driver, 100);
+//        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
+////        search.sendKeys(sharedatastep.P_CRMARN);
+//    	search.sendKeys("ARN/00030395/2020");
+//        search.sendKeys(Keys.ENTER);
+//
+//        Thread.sleep(2000);
+//    }
+
     @When("^enters reference number in search results$")
-    public void enters_in_search_results() throws Throwable {
-        WebDriverWait wait=new WebDriverWait(driver, 100);
-        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
-        search.sendKeys(sharedatastep.P_CRMARN);
-//    	search.sendKeys("CT00001741");
+    public void enters_reference_number_in_search_results() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchTextBox")));
+        search.sendKeys(sharedatastep.A_CRMARN);
+//    	search.sendKeys("ARN/00021035/2020");
+
         search.sendKeys(Keys.ENTER);
 
         Thread.sleep(2000);
@@ -3730,8 +3760,8 @@ public class steps extends BaseClass {
     public void enters_exemption_reference_number_in_search_results() throws Throwable {
         WebDriverWait wait=new WebDriverWait(driver, 20);
         WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
-        search.sendKeys(sharedatastep.E_CRMARN);
-//    	search.sendKeys("EA00001045");
+//        search.sendKeys(sharedatastep.E_CRMARN);
+    	search.sendKeys("EA00001464");
         Thread.sleep(2000);
         search.sendKeys(Keys.ENTER);
 
@@ -3739,7 +3769,7 @@ public class steps extends BaseClass {
     }
     @Given("^Open CRM URL for Accounting Module$")
     public void open_CRM_URL_for_Accounting_Module() throws Throwable {
-        driver = BaseClass.getDriver();
+//        driver = BaseClass.getDriver();
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
