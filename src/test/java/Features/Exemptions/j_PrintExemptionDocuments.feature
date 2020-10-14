@@ -1,41 +1,4 @@
 Feature: [SUC:22-10] Print Exemption Documents
-
-  @[finder1]
-  Scenario Outline: UAT_M7_10-01-UAT_M7_10-02-Verify the Process of Print Taxpayer Documents
-    Given User navigates to the login page
-    When Enters the username "tripsuser" and password "Passw0rd" to login
-    Then User should be logged in
-    Given User navigates to Exemptions Applications>>New Exemptions Applications
-    When user inputs <Category> and <TIN> and <exemptionCode> to fill form
-    And user Clicks on Add under ButtonExemption Qualification Attribute
-    Then Exemption Application Qualification Attributes pop up should be displayed
-    When user  Click on Add under Attachment Schedule
-    Then Exemption Application Attachment pop up should be displayed
-    When attachment added "C:\Users\barnaby.kamau\Desktop\id_doc.png"
-    Then attachment popup closed
-    When User adds Declaration Info <applicant> <designation> <supervisorTIN>
-    Then Exemption created successfully
-
-    Examples:
-      | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
-      | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
-
-  @[finder2]
-  Scenario: UAT_M7_10-02-CRM approve the Exemption Application(CRM)
-    Given Open CRM URL for Accounting Module
-    And Close Popup Window
-    Then Home Page Should be Displayed with User's Queue
-    When Click on Case management dropdown
-    And click on Exemption application
-    Then switch to frame
-    And enters Exemption reference number in search results
-    When Click selected Reference Number
-#    Then Goto view AttachmentDetails-Exemptions screen
-    And Download the Attachment
-    And clicks Approve from the dropdown
-    And click save on exemption
-    Then Application Account Adjustment status should be "Approved"
-
   @[finder1]
   Scenario Outline: UAT_M7_10-02-Apply for Exemption(Trips+)
     Given User navigates to the login page
@@ -66,8 +29,13 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then switch to frame
     And enters Exemption reference number in search results
     When Click selected Reference Number
+    Then switch to frame2
+    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
+    Then switch to frame2
     And clicks Decline from the dropdown
     Then Enter Outcome Notes "<Notes>"
+    Then switch to frame2
     And Enter Outcome Reason for Taxpayer accounting
     And click save on exemption
     Then Application Account Adjustment status should be "Rejected"
@@ -77,6 +45,47 @@ Feature: [SUC:22-10] Print Exemption Documents
       | Invalid Documentation | EXEMPTION_APP_REJECT |
 
   @[finder1]
+  Scenario Outline: UAT_M7_10-01-UAT_M7_10-02-Verify the Process of Print Taxpayer Documents
+    Given User navigates to the login page
+    When Enters the username "tripsuser" and password "Passw0rd" to login
+    Then User should be logged in
+    Given User navigates to Exemptions Applications>>New Exemptions Applications
+    When user inputs <Category> and <TIN> and <exemptionCode> to fill form
+    And user Clicks on Add under ButtonExemption Qualification Attribute
+    Then Exemption Application Qualification Attributes pop up should be displayed
+    When user  Click on Add under Attachment Schedule
+    Then Exemption Application Attachment pop up should be displayed
+    When attachment added "C:\Users\barnaby.kamau\Desktop\id_doc.png"
+    Then attachment popup closed
+    When User adds Declaration Info <applicant> <designation> <supervisorTIN>
+    Then Exemption created successfully
+
+    Examples:
+      | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
+      | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
+
+  @[finder1]
+  Scenario: UAT_M7_10-02-CRM approve the Exemption Application(CRM)
+    Given Open CRM URL for Accounting Module
+    And Close Popup Window
+    Then Home Page Should be Displayed with User's Queue
+    When Click on Case management dropdown
+    And click on Exemption application
+    Then switch to frame
+    And enters Exemption reference number in search results
+    When Click selected Reference Number
+    Then switch to frame2
+    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
+    Then switch to frame2
+    And clicks Approve from the dropdown
+    And click save on exemption
+    Then Application Account Adjustment status should be "Approved"
+
+
+
+
+  @[finder1]
   Scenario Outline: UAT_M7_10-02Apply for Exemption Cancellation(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -84,7 +93,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Given User navigates to Exemptions Applications>>Cancel Exemptions
     When user fills <TIN> on Find Exemption Application
     Then Exemptions Applications window displayed with <TIN> and <exemptionCategory>and <ECRType>and <applicationStatus> in read only mode
-    When User enters <reason> and <notes> on Exemption Application under Cancellation Details section
+    When enters <reason> and <notes> on Exemption Application under Cancellation Details section
     Then The System saves the Exemption application
 
 
@@ -102,6 +111,10 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then switch to frame
     And enters Exemption reference number in search results
     When Click selected Reference Number
+    Then switch to frame2
+    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
+    Then switch to frame2
     And clicks Approve from the dropdown
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
@@ -114,7 +127,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Given User navigates to Exemptions Applications>>suspend Exemptions
     When user fills <TIN> on Find Exemption Application
     Then Exemptions Applications window displayed with <TIN> and <exemptionCategory>and <ECRType>and <applicationStatus> in read only mode
-    When User enters <reason> and <submissionType> data
+    When enters <reason> and <submissionType> data
     And clicks submit
     Then The System saves the Exemption application
 
@@ -130,7 +143,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Given User navigates to Exemptions Applications>>Reactivate Exemptions
     When user fills <TIN> on Find Exemption Application
     Then Exemptions Applications window displayed with <TIN> and <exemptionCategory>and <ECRType>and <applicationStatus> in read only mode
-    When User enters <reason> and <submissionType> data
+    When enters <reason> and <submissionType> data
     And clicks submit
     Then The System saves the Exemption application
 
@@ -168,6 +181,10 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then switch to frame
     And enters Exemption reference number in search results
     When Click selected Reference Number
+    Then switch to frame2
+    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
+    Then switch to frame2
     And clicks Approve from the dropdown
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
@@ -180,7 +197,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     Given User navigates to Exemptions Applications>>Cancel Exemptions
     When user fills <TIN> on Find Exemption Application
     Then Exemptions Applications window displayed with <TIN> and <exemptionCategory>and <ECRType>and <applicationStatus> in read only mode
-    When User enters <reason> and <notes> on Exemption Application under Cancellation Details section
+    When enters <reason> and <notes> on Exemption Application under Cancellation Details section
     Then The System saves the Exemption application
 
 
@@ -198,6 +215,10 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then switch to frame
     And enters Exemption reference number in search results
     When Click selected Reference Number
+    Then switch to frame2
+    Then Goto view AttachmentDetails-Exemptions screen
+    And Download the Attachment
+    Then switch to frame2
     And clicks Approve from the dropdown
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"

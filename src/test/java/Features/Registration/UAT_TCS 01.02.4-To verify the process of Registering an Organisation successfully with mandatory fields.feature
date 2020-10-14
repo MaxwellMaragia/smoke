@@ -8,8 +8,8 @@ Scenario Outline:UAT_TCS 01.02.4-To verify the process of Registering an Organis
   When I Fill the Organization Taxpayer Registration form
   And I enter valid data on the pages of Organization
     | CategoryValue |Co-operative Society (Other)|0|
-    | Organization Name |A&F|1|
-    | RGD Number |kujP|2|
+    | Organization Name |A&L|1|
+    | RGD Number |kujnN|2|
     | DOE | 12092018|3|
     | DOC|12092020|4|
     | Source of Capital |Home Loan|5|
@@ -32,13 +32,13 @@ Scenario Outline:UAT_TCS 01.02.4-To verify the process of Registering an Organis
     | Attachments|Attachments|19 0|
     | Attachment Date|21082016|20 1|
     |Attachment Pasport|Business Registration Certificate|21 2|
-    | Reference number|uK|22 3|
+    | Reference number|uM|22 3|
     |File upload |C:\Users\barnaby.kamau\Desktop\id_doc.png|23 4|
     | Attachments|Doccument | 24 5|
     | Attachments|Certificate of Incorporation| 25 6|
     | Attachments|Letter Of Authorization| 26 7|
-    | Attachment Reference number|80E| 27 8|
-    | Attachment Reference number|01F| 28 9|
+    | Attachment Reference number|80J| 27 8|
+    | Attachment Reference number|01L| 28 9|
   And enters director "P0017167" and "startDate"
   Then Click On Organization Page Submit Button
 And  Verify the ARN number "<ARN>"
@@ -57,16 +57,13 @@ Scenario Outline: UAT_TCS 02.02.1-To verify the process of Approving Taxpayer Re
   And Pick registration case
   And Click on NextStage button
   Then switch to frame
+  Then wait for duplicate check
+  And Click on NextStage button
+  Then switch to frame
   Then Goto view AttachmentDetails screen
   And Download the Attachment
   Then switch to frame
-#  Then Select Identification Outcome dropdown value for Individual Taxpayer Approval
-#  And Click on NextStage button
-#  Then switch to frame
-#  Then wait for duplicate check
-#  And Click on NextStage button
-#  Then switch to frame
-  And Select Approval outcome dropdown value to Approve <Approve>
+  Then Select Identification Outcome dropdown value for Organisation Taxpayer Approval
   Then Click on Save button
   And Verify the String "<Read>"
 

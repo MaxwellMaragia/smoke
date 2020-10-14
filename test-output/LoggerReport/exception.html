@@ -108,12 +108,12 @@
 				<div class="p-2 px-3 text-muted text-sm">Tags</div>
 					<div class="list-item attr">
 						<div class="list-body">
-							<a href="#" class="item-title _500">java.lang.AssertionError</a>
+							<a href="#" class="item-title _500">org.openqa.selenium.NoSuchFrameException</a>
 							<div class="item-except text-sm text-muted h-1x">
 								1 tests
 							</div>
 							<div class="tc d-none">
-								<h5 class="mb-4">java.lang.AssertionError</h5>
+								<h5 class="mb-4">org.openqa.selenium.NoSuchFrameException</h5>
 								<table class="table">
 									<thead><tr>
 										<th id="status-col"></th>
@@ -125,10 +125,10 @@
 									</tr></thead>
 									<tbody>
 	
-<tr class="s-fail" test-id="30" parent-id="1">
+<tr class="s-fail" test-id="86" parent-id="15">
 	<td><span class="w-32 avatar circle fail"><span class="badge">fail</span></span></td>
-	<td class="_600">And Download the Attachment <br/><span class="text-muted text-sm">UAT_TCS 02.02.1-To verify the process of Approving Taxpayer Registration</span></td>
-	<td>0h 2m 18s+622msc</td>
+	<td class="_600">And clicks Decline from the dropdown <br/><span class="text-muted text-sm">Reject Cash Till</span></td>
+	<td>0h 0m 10s+73msc</td>
 	<td></td>
 	<td>
 	</td>
@@ -137,12 +137,120 @@
 <tr class="details">
 	<td colspan="5">
 		
-		<textarea disabled class="code-block">java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at Steps.steps.download_the_Attachment(steps.java:1912)
-	at ✽.Download the Attachment(file:///C:/Users/barnaby.kamau/IdeaProjects/smoke/src/test/java/Features/Registration/UAT_TCS%2001.02.4-To%20verify%20the%20process%20of%20Registering%20an%20Organisation%20successfully%20with%20mandatory%20fields.feature:61)
+		<textarea disabled class="code-block">org.openqa.selenium.NoSuchFrameException: No frame element found by name or id contentIFrame1
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-IHEV78G', ip: '172.16.16.30', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteTargetLocator.frame(RemoteWebDriver.java:885)
+	at Steps.steps.clicks_Decline_from_the_dropdown(steps.java:3095)
+	at ✽.clicks Decline from the dropdown(file:///C:/Users/barnaby.kamau/IdeaProjects/smoke/src/test/java/Features/Payments/c_AllocateNewCashTill.feature:70)
+</textarea>
+	</td>
+</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="list-item attr">
+						<div class="list-body">
+							<a href="#" class="item-title _500">org.openqa.selenium.NoSuchElementException</a>
+							<div class="item-except text-sm text-muted h-1x">
+								2 tests
+							</div>
+							<div class="tc d-none">
+								<h5 class="mb-4">org.openqa.selenium.NoSuchElementException</h5>
+								<table class="table">
+									<thead><tr>
+										<th id="status-col"></th>
+										<th>Test</th>
+										<th>Duration</th>
+										<th>Attributes</th>
+										<th>Media</th>
+										<th>Source</th>
+									</tr></thead>
+									<tbody>
+	
+<tr class="s-fail" test-id="100" parent-id="15">
+	<td><span class="w-32 avatar circle fail"><span class="badge">fail</span></span></td>
+	<td class="_600">When clicks on Request Cash Till button <br/><span class="text-muted text-sm">UAT_M7_02-04-Verify the Process Float Not Added</span></td>
+	<td>0h 0m 0s+15msc</td>
+	<td></td>
+	<td>
+	</td>
+	<td class="static"><i class="static fa fa-external-link"></i></td>
+</tr>
+<tr class="details">
+	<td colspan="5">
+		
+		<textarea disabled class="code-block">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#CashTillMaintenance\:btnRequestCashTill"}
+  (Session info: chrome=86.0.4240.75)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-IHEV78G', ip: '172.16.16.30', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 86.0.4240.75, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\BARNAB~1.KAM\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:60914}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: 242a08043864a14acdce7caa7e91012b
+*** Element info: {Using=id, value=CashTillMaintenance:btnRequestCashTill}
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:372)
+	at org.openqa.selenium.By$ById.findElement(By.java:188)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at Steps.steps.clicks_on_request_cash_till_button(steps.java:2866)
+	at ✽.clicks on Request Cash Till button(file:///C:/Users/barnaby.kamau/IdeaProjects/smoke/src/test/java/Features/Payments/c_AllocateNewCashTill.feature:86)
+</textarea>
+	</td>
+</tr>
+	
+<tr class="s-fail" test-id="333" parent-id="310">
+	<td><span class="w-32 avatar circle fail"><span class="badge">fail</span></span></td>
+	<td class="_600">When user clicks on browse button <br/><span class="text-muted text-sm">UAT_M7_19-03-Verify the Process of Payment Bulk Upload</span></td>
+	<td>0h 0m 0s+15msc</td>
+	<td></td>
+	<td>
+	</td>
+	<td class="static"><i class="static fa fa-external-link"></i></td>
+</tr>
+<tr class="details">
+	<td colspan="5">
+		
+		<textarea disabled class="code-block">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='BulkPayment:UploadFile']/span[1]"}
+  (Session info: chrome=86.0.4240.75)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-IHEV78G', ip: '172.16.16.30', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 86.0.4240.75, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\BARNAB~1.KAM\AppDa...}, goog:chromeOptions: {debuggerAddress: localhost:62259}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
+Session ID: aaa5b0bcedd48e7379d802ece79d8d48
+*** Element info: {Using=xpath, value=//*[@id='BulkPayment:UploadFile']/span[1]}
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at Steps.steps.user_clicks_on_browse_button(steps.java:3328)
+	at ✽.user clicks on browse button(file:///C:/Users/barnaby.kamau/IdeaProjects/smoke/src/test/java/Features/Payments/n_BulkUploadPayments.feature:25)
 </textarea>
 	</td>
 </tr>
@@ -170,7 +278,7 @@
 						            </div>
 									<ul class="nav nav-xs flex-row no-border pull-right">
 <li><a href="#" class="b-l"><span class="badge badge-pull">ExtentReports</span></a></li>
-<li><a href="#" class="b-l"><span class="badge badge-pull">Oct 6, 2020 07:08:48 PM</span></a></li>
+<li><a href="#" class="b-l"><span class="badge badge-pull">Oct 9, 2020 03:00:13 PM</span></a></li>
 <li><a href="#" class="b-l"><span class="badge badge-pull">4.0</span></a></li>
 								    </ul>
 								</div>

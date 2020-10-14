@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/java/Features"},
         glue = "Steps",
-		tags = "@Test2",
+		tags = "@trial8",
 		dryRun = false,    //checks whether each feature has a mapped step definition
 		monochrome = true,// neat output after tc run
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}

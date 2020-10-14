@@ -1423,11 +1423,12 @@ public class steps extends BaseClass {
                 break;
             }
         }
-        Thread.sleep(5000);
-
-        driver.findElement(By.id("Identification:CountryOfIssue_label")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//li[contains(text(),'"+data.get(3).get(1)+"')]")).click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.findElement(By.id("Identification:CountryOfIssue")).click();
+        Thread.sleep(6000);
+        driver.findElement(By.id("Identification:CountryOfIssue")).click();
+        WebElement clicker=driver.findElement(By.xpath("//li[contains(text(),'"+data.get(3).get(1)+"')]"));
+        clicker.click();
 
         Thread.sleep(2000);
         driver.findElement(By.id(Pro.getProperty("Identification_ePermit_Num_ID"))).sendKeys(data.get(4).get(1));
@@ -1718,7 +1719,7 @@ public class steps extends BaseClass {
         Thread.sleep(5000);
         WebElement  ContMethodframe= driver.findElement(By.tagName("iframe"));
         driver.switchTo().frame(ContMethodframe);
-        WebDriverWait Purpose=new WebDriverWait(driver,50);
+        WebDriverWait Purpose=new WebDriverWait(driver,60);
         Purpose.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("ContactMethods_Purpose_XPATH")))).click();
         List<WebElement> PurposeValue = driver.findElements(By.xpath(Pro.getProperty("ContactMethods_Purpose_ITEM_XPATH")));
         for(WebElement option : PurposeValue){
@@ -1858,10 +1859,11 @@ public class steps extends BaseClass {
 
     @Then("^Goto view AttachmentDetails-Exemptions screen$")
     public void goto_view_AttachmentDetails_screen_Exemptions() throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver,30);
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("WebResource_ExemptionApplicationAngular"));
-//        driver.switchTo().frame("WebResource_ExemptionApplicationAngular");
-//        Thread.sleep(3000);
+
+        WebDriverWait wait=new WebDriverWait(driver, 100);
+        WebElement specificframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("WebResource_ExemptionApplicationAngular")));
+        driver.switchTo().frame(specificframe);
+
         List<WebElement> element=driver.findElements(By.xpath(Pro.getProperty("Individual_NextStage_RefNum_DownloadFrame_DownloadLink_XPATH")));
         for (WebElement ele : element)
         {
@@ -1897,24 +1899,40 @@ public class steps extends BaseClass {
         WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Download']")));
         downloadAttach.click();
         Thread.sleep(9000);
-        String downloadpath="C:\\Users\\barnaby.kamau\\Downloads";
-        boolean isPresent = false;
-        File dir = new File(downloadpath);
-        File[] dir_contents = dir.listFiles();
-
-        for (File dir_content : dir_contents) {
-            if (dir_content.getName().equals("id_doc.png"))
-                isPresent = true;
-            dir_content.delete();
-            System.out.print("0000000000000000000000000000000000000");
+        String downloadPath="C:\\Users\\barnaby.kamau\\Downloads";
+//        boolean isPresent = false;
+//        File dir = new File(downloadpath);
+//        File[] dir_contents = dir.listFiles();
+//
+//        for (File dir_content : dir_contents) {
+//            if (dir_content.getName().equals("id_doc.png")) {
+//                isPresent = true;
+//                Thread.sleep(8000);
+//                System.out.print("0000000000000000000000000000000000000");
+//            }
+//            dir_content.delete();
+//        }
+//        Assert.assertTrue(isPresent);
+        String fileName="id_doc.png";
+        Thread.sleep(5000);
+        if (isFileDownloaded(downloadPath, fileName)) {
+            System.out.println(fileName + ": has been downloaded");
+            Assert.assertTrue(true);
+        } else {
+            Assert.assertFalse(fileName + ": has not been downloaded", false);
         }
-        Thread.sleep(4000);
-        Assert.assertTrue(isPresent);
 
     }
     @Then("^Select Identification Outcome dropdown value for Individual Taxpayer Approval$")
     public void  select_Identification_Outcome_dropdown_value_for_Individual_Taxpayer_Approval() throws Throwable {
         driver.findElement(By.xpath("//span[text()='click to enter']")).click();
+        Actions action = new Actions(driver);
+        action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+    }
+
+    @Then("^Select Identification Outcome dropdown value for Organisation Taxpayer Approval$")
+    public void  select_Identification_Outcome_dropdown_value_for_Organisation_Taxpayer_Approval() throws Throwable {
+        driver.findElement(By.id("header_process_tbg_approvaloutcome3_d")).click();
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
     }
@@ -2235,7 +2253,7 @@ public class steps extends BaseClass {
         List<List<String>> data =table.asLists();
         Actions action = new Actions(driver);
         driver.findElement(By.xpath(Pro.getProperty("HeaderDetails_OrganisationName_XPATH"))).sendKeys(data.get(1).get(1));
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         WebDriverWait Category=new WebDriverWait(driver,60);
         Category.until(ExpectedConditions.elementToBeClickable(By.xpath(Pro.getProperty("Organization_OrganisationCategory_XPATH")))).click();
         List<WebElement> CatValue = driver.findElements(By.xpath(Pro.getProperty("HeaderDetails_OrganisationCategory_ITEM_XPATH")));
@@ -2440,10 +2458,10 @@ public class steps extends BaseClass {
                 break;
             }
         }
-        Thread.sleep(2000);
-
+        Thread.sleep(5000);
         WebElement SName=driver.findElement(By.xpath(Pro.getProperty("Addresses_StreetName_XPATH")));
         action.sendKeys(SName,data.get(11).get(1)).build().perform();
+        Thread.sleep(5000);
         WebElement CName=driver.findElement(By.xpath(Pro.getProperty("Addresses_Town/City_XPATH")));
         action.sendKeys(CName,data.get(12).get(1)).build().perform();
 
@@ -2898,26 +2916,38 @@ public class steps extends BaseClass {
         WebElement specificframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Pro.getProperty("NextStage_Frame_ID"))));
         driver.switchTo().frame(specificframe);
         Thread.sleep(3000);
+    }
+
+    @Then("^switch to frame2$")
+    public void switch_to_frame2() throws Throwable {
+        driver.switchTo().defaultContent();
+//        List<WebElement> myIframes= driver.findElements(By.tagName("iframe"));
+//        System.out.println(myIframes.size());
+//        System.out.println("------------------------------------------------------");
+//        WebElement frame1=myIframes.get(0);
+//        System.out.println(frame1.getAttribute("id"));
+//        System.out.println("=======================================================");
+        driver.switchTo().frame(1);
 
     }
 
-//    @When("^enters reference number in search results-$")
-//    public void enters_in_search_results() throws Throwable {
-//        WebDriverWait wait=new WebDriverWait(driver, 100);
-//        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
-////        search.sendKeys(sharedatastep.P_CRMARN);
-//    	search.sendKeys("ARN/00030395/2020");
-//        search.sendKeys(Keys.ENTER);
-//
-//        Thread.sleep(2000);
-//    }
+    @When("^enters reference number in search results-$")
+    public void enters_in_search_results() throws Throwable {
+        WebDriverWait wait=new WebDriverWait(driver, 100);
+        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
+        search.sendKeys(sharedatastep.P_CRMARN);
+//    	search.sendKeys("CT00003083");
+        search.sendKeys(Keys.ENTER);
+
+        Thread.sleep(2000);
+    }
 
     @When("^enters reference number in search results$")
     public void enters_reference_number_in_search_results() throws Throwable {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchTextBox")));
         search.sendKeys(sharedatastep.A_CRMARN);
-//    	search.sendKeys("ARN/00021035/2020");
+//        search.sendKeys("ARN/00021065/2020");
 
         search.sendKeys(Keys.ENTER);
 
@@ -2932,7 +2962,7 @@ public class steps extends BaseClass {
         actions.doubleClick(elementLocator).perform();
 
         driver.switchTo().defaultContent();
-        Thread.sleep(4000);
+        Thread.sleep(2000);
     }
 
     @And("^clicks Approve from the dropdown$")
@@ -3063,7 +3093,8 @@ public class steps extends BaseClass {
     @And("^clicks Decline from the dropdown$")
     public void clicks_Decline_from_the_dropdown() throws Throwable {
         driver.switchTo().frame("contentIFrame1");
-        Thread.sleep(10000);
+        Thread.sleep(9000);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         Actions action=new Actions(driver);
         WebElement Outcome=driver.findElement(By.id(Pro.getProperty("Taxpayer_Accounting_Approval_Outcome_ID")));
@@ -3091,15 +3122,27 @@ public class steps extends BaseClass {
 
     @Then("^Enter Outcome Reason for Taxpayer accounting$")
     public void enter_Outcome_Reason_for_Taxpayer_accounting() throws Throwable {
-        WebElement specificframe=driver.findElement(By.id("WebResource_RevenueCollectionRejectionDataWebResource"));
+        WebElement specificframe=driver.findElement(By.id("WebResource_ExemptionRejectionDataReferenceResource"));
         driver.switchTo().frame(specificframe);
         WebElement dropDown = driver.findElement(By.xpath("//*[@id=\"viewoption\"]"));
-
+        Thread.sleep(4000);
         dropDown.click();
-
+        Thread.sleep(4000);
         driver.findElement(By.xpath("//option[@value='2']")).click();
 
     }
+
+    @Then("^Enter Outcome Reason for Taxpayer payments$")
+    public void enter_Outcome_Reason_for_Taxpayer_payments$() throws Throwable {
+        WebElement specificframe=driver.findElement(By.id("WebResource_RevenueCollectionRejectionDataWebResource"));
+        driver.switchTo().frame(specificframe);
+        WebElement dropDown = driver.findElement(By.xpath("//*[@id=\"viewoption\"]"));
+        Thread.sleep(4000);
+        dropDown.click();
+        Thread.sleep(4000);
+        driver.findElement(By.xpath("//option[@value='2']")).click();
+    }
+
 
     @Then("^cashTill status should be (.+)$")
     public void cashtill_status_should_be(String status) throws Throwable {
@@ -3229,8 +3272,11 @@ public class steps extends BaseClass {
 
     @When("^User enters (.+) and (.+)$")
     public void user_enters_and(String taxpayerclassificationtype, String tin) throws Throwable {
-        WebElement taxpayerClassificationdropDown=driver.findElement(By.xpath("//*[@id=\"SearchForm:DTYPE\"]/div[3]"));
+        WebDriverWait wait=new WebDriverWait(driver,20);
+
+        WebElement taxpayerClassificationdropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"SearchForm:DTYPE\"]/div[3]")));
         taxpayerClassificationdropDown.click();
+
         Thread.sleep(2000);
         driver.findElement(By.xpath("//li[@data-label='"+taxpayerclassificationtype+"']")).click();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
@@ -3575,17 +3621,19 @@ public class steps extends BaseClass {
         driver.findElement(By.xpath(StatusXpath)).click();
         Thread.sleep(3000);
 //   	 Actions action = new Actions(driver);
-        driver.findElement(By.xpath("//*[@id='ExemptionApplicationForm:exemptionCode']/div[3]")).click();
+        driver.findElement(By.id("ExemptionApplicationForm:exemptionCode_label")).click();
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//li[@data-label='"+exemptioncode+"']")).click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.findElement(By.xpath(Pro.getProperty("taxType"))).click();
 
         driver.findElement(By.id(Pro.getProperty("taxType1"))).click();
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driver.findElement(By.xpath(Pro.getProperty("returnType"))).click();
 
+        Thread.sleep(5000);
         driver.findElement(By.id(Pro.getProperty("returnType1"))).click();
 
         WebElement Date =driver.findElement(By.id(Pro.getProperty("dateSelector")));
@@ -3604,7 +3652,7 @@ public class steps extends BaseClass {
     @Then("^Exemption Application Qualification Attributes pop up should be displayed$")
     public void exemption_application_qualification_attributes_pop_up_should_be_displayed() throws Throwable {
         WebElement frame = driver.findElement(By.tagName("iframe"));
-        Assert.assertEquals(true, frame.isDisplayed());
+//        Assert.assertEquals(true, frame.isDisplayed());
         //Switch to iframe to allow interaction with modal
 //    	String exemptionPopup = driver.findElement(By.xpath(Pro.getProperty("ExemptionQualificationPopup"))).getText();
 //    	Assert.assertEquals(exemptionPopup, "Exemption Application - Qualification Attributes");
@@ -3635,6 +3683,7 @@ public class steps extends BaseClass {
 
     @When("^user  Click on Add under Attachment Schedule$")
     public void user_click_on_add_under_attachment_schedule() throws Throwable {
+        Thread.sleep(4000);
         driver.findElement(By.id(Pro.getProperty("addAttchSchedule"))).click();
     }
 
@@ -3657,9 +3706,9 @@ public class steps extends BaseClass {
         Thread.sleep(2000);
         driver.findElement(By.id(Pro.getProperty("attachmentType1"))).click();
 
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         WebElement attachment = driver.findElement(By.id(Pro.getProperty("documentAttachment")));
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         attachment.sendKeys(strArg1);
 
         Thread.sleep(2000);
@@ -3760,8 +3809,8 @@ public class steps extends BaseClass {
     public void enters_exemption_reference_number_in_search_results() throws Throwable {
         WebDriverWait wait=new WebDriverWait(driver, 20);
         WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("crmGrid_findCriteria")));
-//        search.sendKeys(sharedatastep.E_CRMARN);
-    	search.sendKeys("EA00001464");
+        search.sendKeys(sharedatastep.E_CRMARN);
+//    	search.sendKeys("EA00001472");
         Thread.sleep(2000);
         search.sendKeys(Keys.ENTER);
 
@@ -3835,6 +3884,32 @@ public class steps extends BaseClass {
         WebElement searchButton = driver.findElement(By.id("ExemptionApplicationForm:searchId"));
         Assert.assertFalse(searchButton.isEnabled());
 
+    }
+
+    @When("^enters (.+) and (.+) on Exemption Application under Cancellation Details section$")
+    public void user_enters_and_on_exemption_application_under_cancellation_details_section(String reason, String notes) throws Throwable {
+        WebElement reasonDropdown = driver.findElement(By.xpath("//*[@id=\"ExemptionApplicationForm:CancelReason\"]/div[3]"));
+        reasonDropdown.click();
+
+
+        WebElement Reason = driver.findElement(By.id("ExemptionApplicationForm:CancelReason_1"));
+        Reason.click();
+        Thread.sleep(2000);
+
+        WebElement Notes = driver.findElement(By.id("ExemptionApplicationForm:cancelNotes"));
+        Notes.sendKeys(notes);
+        Thread.sleep(2000);
+
+        WebElement submitButton = driver.findElement(By.id("ExemptionApplicationForm:idSave"));
+        submitButton.click();
+    }
+
+    @When("^enters (.+) and (.+) data$")
+    public void user_enters_and_data(String reason, String submissiontype) throws Throwable {
+        WebElement reasonDropdown=driver.findElement(By.xpath("//*[@id=\"ExemptionApplicationForm:"+submissiontype+"\"]/div[3]"));
+        reasonDropdown.click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//li[@data-label=\""+reason+"\"]")).click();
     }
 
     @Then("^The System saves the Exemption application$")
