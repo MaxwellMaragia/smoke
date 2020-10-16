@@ -31,7 +31,6 @@ public class BaseClass {
         driver.manage().window().maximize();
 
         return driver;
-
     }
 
     public static String randomDate() {
