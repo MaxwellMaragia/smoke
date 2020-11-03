@@ -20,7 +20,7 @@ public class hooks extends BaseClass {
     @Before()
     public void before(Scenario scenario) throws IOException {
         this.scenario = scenario;
-        //driver = BaseClass.getDriver();
+        driver = BaseClass.getDriver();
     }
 
     @After(order=1)

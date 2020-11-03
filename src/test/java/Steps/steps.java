@@ -34,7 +34,7 @@ public class steps extends BaseClass {
 
     public steps (sharedatastep sharedata) throws IOException {
         steps.sharedata=sharedata;
-        driver = BaseClass.getDriver();
+        
     }
 
     @Before(order = 0)
@@ -1178,7 +1178,7 @@ public class steps extends BaseClass {
 
     @Given("^User navigates to the login page$")
     public void user_navigates_to_the_login_page() throws Throwable {
-//    	driver = BaseClass.getDriver();
+//    	
 //    	Intergration
 //    	driver.get("http://18.202.88.7:8001/trips-ui/faces/login/tripsLogin.xhtml");
 
@@ -2885,7 +2885,7 @@ public class steps extends BaseClass {
 
     @Given("^Open CRM URL Module$")
     public void open_CRM_URL_Module() throws Throwable {
-//        driver = BaseClass.getDriver();
+//        
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
@@ -3818,7 +3818,7 @@ public class steps extends BaseClass {
     }
     @Given("^Open CRM URL for Accounting Module$")
     public void open_CRM_URL_for_Accounting_Module() throws Throwable {
-//        driver = BaseClass.getDriver();
+//        
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
@@ -3954,7 +3954,7 @@ public class steps extends BaseClass {
     //--------------------------------------Taxtype registration -Portal----------------------------------------------------------------------------------------------//
     @Given("^User navigates to the Portal login page$")
     public void user_navigates_to_the_portal_login_page() throws Throwable {
-        driver = BaseClass.getDriver();
+        
         driver.get(Pro.getProperty("PortalURL"));
     }
 
