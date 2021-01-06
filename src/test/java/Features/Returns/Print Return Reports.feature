@@ -15,5 +15,5 @@ Feature: [SUC:09-09] Print Return Reports
     Then Select business sector
     Then Select taxpayer category
     Then Click run report "frmReportDetails:RunReport"
-    Then Verify file "Amended Returns Report.pdf" has been downloaded in downloads directory "C:\\Users\\v-maxmar\\Downloads"
+    Then Verify file "Amended Returns Report.pdf" has been downloaded in downloads directory "C:\\Users\\Maxwell Maragia\\Downloads"
 

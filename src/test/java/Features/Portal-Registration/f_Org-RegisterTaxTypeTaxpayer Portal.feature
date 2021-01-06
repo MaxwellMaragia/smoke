@@ -11,7 +11,7 @@ Feature: [SUC:02-11] Taxpayer Portal Registration
   Scenario Outline: UAT_TCS-04.05.2 To Verify the Process of Registering a Tax Type in the Taxpayer Portal
     Given user navigates to my tax>>taxtype request
     And enters taxtype as <TaxType>
-    And enters an effective date "12/05/2021"
+    And enters an effective date "12052021"
     And enters taxtype taxable turnover <amount>
     And clicks taxtype registration Save Button
     Then Portal message is displayed "Your tax type registration request has been successfully submitted"

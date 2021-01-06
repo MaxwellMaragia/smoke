@@ -3,7 +3,7 @@ Feature: [SUC:01-12] Submit Portal Application(Organisation)
   Background:
     Given User navigates to the Portal login page
     When User clicks login as Applicant
-    And enters Portal email "bab02@mailinator.com" and password "Passw0rd@123"
+    And enters Portal email "bab05@mailinator.com" and password "Passw0rd@123"
     Then successfully logged in to organisation portal
 
   @SUC:01-12 @UAT_TCS-03.04.2
@@ -35,7 +35,7 @@ Feature: [SUC:01-12] Submit Portal Application(Organisation)
       | DirectorsName | Baze     |
     And Fill in attachment details and click next
       | DocumentType | Constitution  |
-      | DocNumber    | 32355247      |
+      | DocNumber    | 3235524766      |
       | Attachment   | C:\id_doc.png |
     And Click Submit: xpath "//*[@id='id_OrgForm']/form-wizard/div/div/div[2]/div[3]/button"
     Then Success message is displayed "Your application has been submitted successfully."

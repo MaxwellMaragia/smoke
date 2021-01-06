@@ -27,7 +27,7 @@ Feature: [SUC:09-06]-Process Tax Return
     And Click on return filing and processing > File return
     Then Select return document as "Domestic VAT Return"
     Then Click next "FormSelection:nextReturnButton"
-    Then Enter tin as "P0020331" and period number as "" and year as "2020"
+    Then Enter tin as "" and period number as "" and year as "2020"
     Then Click search
     Then Click table column "//*[@id='SearchForm:resultsDataTable_data']/tr[1]/td[7]"
     Then Click continue "SearchForm:j_id14"
