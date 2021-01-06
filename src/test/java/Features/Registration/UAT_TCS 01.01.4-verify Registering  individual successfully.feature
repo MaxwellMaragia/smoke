@@ -7,8 +7,13 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
     Then click on login
     When I Fill the Individual Taxpayer Registration form
     And I enter valid data on the Individualpage and Submit
+<<<<<<< HEAD
       | First Name        | Max      | 0 |
       | Last Name         | Testdata | 1 |
+=======
+      | First Name        | Jane     | 0 |
+      | Last Name         | KumiNne  | 1 |
+>>>>>>> 441230f8011041bac02a6666a956873249199ced
       | CategoryValue     | Employee | 2 |
       | Title Value       | MR       | 3 |
       | Gender            | M        | 4 |
@@ -22,6 +27,7 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
     And Enter identification Date of Issue "<DOI>"
       | Identification      | Identification       | 0 |
       | Identification Type | Passport             | 1 |
+<<<<<<< HEAD
       | Identification num  | 0001s13                | 2 |
       | Country of Issue    | Albania              | 3 |
       | epermit num         | jhkdg                  | 4 |
@@ -29,6 +35,15 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
     And Enter identification Expiry Date "<IED>"
       | Identification Type | Driving Licence    | 0 |
       | Identification num  | acciao68             | 1 |
+=======
+      | Identification num  | 0001t                | 2 |
+      | Country of Issue    | Albania              | 3 |
+      | epermit num         | jhl                  | 4 |
+      | epermit type        | Asylum Seeker Permit | 5 |
+    And Enter identification Expiry Date "<IED>"
+      | Identification Type | Driving Licence    | 0 |
+      | Identification num  | acciap             | 1 |
+>>>>>>> 441230f8011041bac02a6666a956873249199ced
       | Register Ind        | Employment Details | 2 |
       | Employment Position | Senior Executive   | 3 |
       | Employer's Name     | SiddharthReddy     | 4 |
@@ -47,8 +62,13 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
       | Contact Method           | Contact Methods                                                         | 32 11 |
       | Purpose Value            | Personal                                                                | 33 12 |
       | ContactTypeValue         | Email                                                                   | 34 13 |
+<<<<<<< HEAD
       | ContactDetails           | margiewambui11@gmail.com                                                   | 35 14 |
     And enters attachment details "Passport"  with number "0000001468" and path "C:\id_doc.png"
+=======
+      | ContactDetails           | v-bakam@microsoft.com                                                   | 35 14 |
+    And enters attachment details "Passport"  with number "00000015" and path "C:\Users\barnaby.kamau\Desktop\id_doc.png"
+>>>>>>> 441230f8011041bac02a6666a956873249199ced
     Then Click On Individual Page Submit Button
     And  Verify the ARN number "<ARN>"
 #  Then wait for webpage to load
