@@ -83,6 +83,10 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
     Then Click on Save button
     Then switch to frame1
     And Verify the String "<Read>"
+    And Clicks on Taxpayer name CRM
+    And refresh page
+    Then switch to frame1
+    Then Taxpayer Tin is displayed
 
     Examples:
       | Approve    | Read     |

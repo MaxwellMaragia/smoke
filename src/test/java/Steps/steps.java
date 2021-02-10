@@ -1780,17 +1780,6 @@ public class steps extends BaseClass {
     }
 
 
-//    @When("^enters reference number in search results$")
-//    public void enters_in_search_results() throws Throwable {
-//        WebDriverWait wait=new WebDriverWait(driver, 30);
-//        WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchTextBox")));
-//        search.sendKeys(sharedatastep.A_CRMARN);
-////    	search.sendKeys("ARN/00020759/2020");
-//        search.sendKeys(Keys.ENTER);
-//
-//        Thread.sleep(2000);
-//    }
-
 
     //--------------------approve crm-------------------------------------//
     @And("^Click start search$")
@@ -1912,15 +1901,15 @@ public class steps extends BaseClass {
         driver.switchTo().frame("WebResource_RegistrationApplicationAngular");
         Thread.sleep(3000);
 
-        WebDriverWait wait=new WebDriverWait(driver,120);
-        WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='"+confirmation+"']")));
+        WebDriverWait wait = new WebDriverWait(driver, 120);
+        WebElement downloadAttach = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='" + confirmation + "']")));
         Assert.assertTrue(downloadAttach.isDisplayed());
 
         driver.switchTo().defaultContent();
-        WebDriverWait wait1=new WebDriverWait(driver, 30);
-        WebElement specificframe = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(Pro.getProperty("NextStage_Frame_ID"))));
+        WebDriverWait wait1 = new WebDriverWait(driver, 30);
+        WebElement specificframe = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id(Pro.getProperty("NextStage_Frame_ID1"))));
         driver.switchTo().frame(specificframe);
-        Thread.sleep(3000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.findElement(By.xpath("//div[@data-attributename='tbg_approvaloutcome']")).click();
         Actions action = new Actions(driver);
@@ -1965,21 +1954,34 @@ public class steps extends BaseClass {
 
     @Then("^Verify the String \"([^\"]*)\"$")
     public void verify_the_String(String Status) throws Throwable {
-        driver.switchTo().frame("contentIFrame0");
-        WebDriverWait wait = new WebDriverWait(driver,100);
+        WebDriverWait wait = new WebDriverWait(driver, 200);
         Thread.sleep(3000);
-        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='Status_label']"))).getText();
-        if(text.contains(Status))
-        {
-
-            System.out.println("Text Verified and"+Status);
-        }
-        else
-        {
-            System.out.println("Text Not Verfied and failed");
+        WebElement statusLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(text(),'" + Status + "')]")));
+        if (statusLabel.isDisplayed()) {
+            Assert.assertTrue("Approved", true);
+        } else {
+            Assert.fail("Approval failed");
         }
         Thread.sleep(2000);
 
+    }
+
+    @And("^Clicks on Taxpayer name CRM$")
+    public void clicks_on_taxpayer_name_crm() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, 200);
+        Thread.sleep(9000);
+        WebElement NameLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("header_tbg_taxpayer_lookupValue")));
+        NameLabel.click();
+    }
+
+    @Then("^Taxpayer Tin is displayed$")
+    public void taxpayer_tin_is_displayed() throws Throwable {
+        Thread.sleep(3000);
+
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebElement tinLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("TIN Number_label")));
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Taxpayer TIN is"+ tinLabel.getText());
     }
 
     @When("^Enter Attachment Tab details$")
@@ -2820,8 +2822,8 @@ public class steps extends BaseClass {
     @Then("^search for reference number$")
     public void search_for_reference_number() throws Throwable {
         Thread.sleep(3000);
-//        driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys("ARN/00021362/2021");
-        driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys(sharedatastep.A_CRMARN);
+//        driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys("ARN/00021542/2021");
+       driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys(sharedatastep.A_CRMARN);
         driver.findElement(By.id(Pro.getProperty("Search_Field_Submit_ID"))).click();
     }
 
@@ -2875,7 +2877,7 @@ public class steps extends BaseClass {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("searchTextBox")));
         search.sendKeys(sharedatastep.A_CRMARN);
-//        search.sendKeys("ARN/00021065/2020");
+//        search.sendKeys("ARN/00021536/2021");
 
         search.sendKeys(Keys.ENTER);
 
@@ -2895,12 +2897,19 @@ public class steps extends BaseClass {
 
     @Then("^switch to frame1$")
     public void switch_to_frame1() throws Throwable {
+        Thread.sleep(3000);
         driver.switchTo().defaultContent();
         WebDriverWait wait=new WebDriverWait(driver, 30);
         WebElement specificframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Pro.getProperty("NextStage_Frame_ID2"))));
         driver.switchTo().frame(specificframe);
         Thread.sleep(3000);
 
+    }
+
+    @And("^refresh page$")
+    public void refresh_page() throws Throwable {
+        driver.navigate().refresh();
+        Thread.sleep(5000);
     }
 
     @And("^Select Approval outcome Org dropdown value to Approve$")

@@ -1,6 +1,6 @@
 Feature: SUC:02-01 Register Tax Type	Organisation-Register Tax Type
 
-  @SUC:02-01 @Test7 @MRA
+  @SUC:02-01 @Test7 @MRA-
   Scenario Outline: UAT_TCS 01.20.2	To verify the process of Registering Tax Type
     Given  User navigates to the login page
     When Enter the username "tripsuser" and password "Passw0rd"
@@ -22,7 +22,7 @@ Feature: SUC:02-01 Register Tax Type	Organisation-Register Tax Type
       | taxtype      |
       | Domestic VAT |
 
-  @SUC:02-01 @Test7 @MRA
+  @SUC:02-01 @Test7 @MRA-
   Scenario Outline:  Register TaxType Individual Taxpayer Approve Scenario
     Given Open CRM URL Module
     And Close Popup Window
