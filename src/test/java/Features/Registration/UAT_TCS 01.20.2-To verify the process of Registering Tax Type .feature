@@ -1,13 +1,13 @@
 Feature: SUC:02-01 Register Tax Type	Organisation-Register Tax Type
 
-  @SUC:02-01 @Test4
+  @SUC:02-01 @Test7 @MRA
   Scenario Outline: UAT_TCS 01.20.2	To verify the process of Registering Tax Type
     Given  User navigates to the login page
     When Enter the username "tripsuser" and password "Passw0rd"
     Then click on login
     When I enter valid data on the TaxType Individual page <taxtype>
       | TaxpayerClassificationT | Organisation                              | 0 |
-      | TaxPayer_TIN            | V0020862                                  | 1 |
+      | TaxPayer_TIN            | V0016715                                  | 1 |
       | Turnover                | 20000                                     | 2 |
       | EDR                     | 16/09/2016                                | 3 |
       | Wait for Record         | Record Added                              | 4 |
@@ -22,7 +22,7 @@ Feature: SUC:02-01 Register Tax Type	Organisation-Register Tax Type
       | taxtype      |
       | Domestic VAT |
 
-  @SUC:02-01 @Test4
+  @SUC:02-01 @Test7 @MRA
   Scenario Outline:  Register TaxType Individual Taxpayer Approve Scenario
     Given Open CRM URL Module
     And Close Popup Window

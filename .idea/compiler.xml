@@ -11,6 +11,7 @@
         <module name="untitled" />
         <module name="SMOKE" />
         <module name="ReturnsProcessing" />
+        <module name="TBL-MRA-Smoke-Sanity" />
       </profile>
     </annotationProcessing>
   </component>

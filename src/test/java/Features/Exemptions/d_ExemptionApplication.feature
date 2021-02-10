@@ -5,7 +5,7 @@ Feature: [SUC:22-01] Generate Taxpayer Account Structure
     When Enters the username "tripsuser" and password "Passw0rd" to login
     Then User should be logged in
 
-  @SUC:22-01 @[finder1-]
+  @SUC:22-01 @[finder1]
   Scenario Outline: UAT_M7_01-03-Verify the Process of  Application Data Error
     Given User navigates to Exemptions Applications>>New Exemptions Applications
     When user inputs <Category> and <TIN> and <exemptionCode> to fill form
@@ -16,7 +16,7 @@ Feature: [SUC:22-01] Generate Taxpayer Account Structure
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0017167 | Gift Tax | tripsuser | supervisor  | P0019254      | EXD1          |
 
-  @SUC:22-01 @[finder1-]
+  @SUC:22-01 @[finder1]
   Scenario Outline: UAT_M7_01-01-Verify the fields in Submit Exemption Application
     Given User navigates to Exemptions Applications>>New Exemptions Applications
     When user inputs <Category> and <TIN> and <exemptionCode> to fill form
@@ -30,7 +30,7 @@ Feature: [SUC:22-01] Generate Taxpayer Account Structure
       | TIN      | Category | exemptionCode |
       | P0017167 | Gift Tax | EXD1          |
 
-  @SUC:22-01 @[finder1-]
+  @SUC:22-01 @[finder1]
   Scenario Outline: UAT_M7_01-02-Verify the Process of Submit Exemption Application
     Given User navigates to Exemptions Applications>>New Exemptions Applications
     When user inputs <Category> and <TIN> and <exemptionCode> to fill form

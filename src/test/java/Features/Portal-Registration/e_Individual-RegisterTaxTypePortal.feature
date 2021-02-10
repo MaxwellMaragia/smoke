@@ -11,7 +11,7 @@ Feature: [01-24] Taxpayer Portal Registration
   Scenario Outline: UAT_TCS 04.05.2 To Verify the Process of Registering a Tax Type in the Taxpayer Portal
     Given user navigates to my tax>>taxtype request
     And enters taxtype as <TaxType>
-    And enters an effective date "10/27/2021"
+    And enters an effective date 10/27/2021
     And enters taxtype taxable turnover <amount>
     And enters number of employees as "1"
     And clicks taxtype registration Save Button

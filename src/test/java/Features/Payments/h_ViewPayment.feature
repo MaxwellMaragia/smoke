@@ -2,7 +2,7 @@ Feature: [SUC:05-17] View Payment
 
   Background:
     Given User navigates to the login page
-    When Enters the username "cchisala" and password "Passw0rd" to login
+    When Enters the username "cashofficer7" and password "Passw0rd" to login
     Then User should be logged in
 
  #@SUC:05-11
