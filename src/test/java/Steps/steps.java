@@ -1297,6 +1297,71 @@ public class steps extends BaseClass {
         Thread.sleep(3000);
     }
 
+    @And("^Enter Sole Proprietor Additional Details$")
+    public void enter_sole_proprietor_additional_details(DataTable AddTable) throws Throwable {
+        List<List<String>> data = AddTable.asLists();
+        Actions action = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 50);
+
+        WebElement soleProprietorTab=driver.findElement(By.xpath("//a[contains(text(),'Sole Proprietor Additional Details')]"));
+        soleProprietorTab.click();
+
+        WebElement addBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("RegisterIndividual:individualAccordion:tradingNameTableHandler:AddTradingNameDetails")));
+        addBtn.click();
+
+        //Switch to NEW Trading Names frame
+        WebElement idframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe")));
+        driver.switchTo().frame(idframe);
+
+        WebElement tradingNameInput=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("TradingNameDetails:TradingName")));
+        tradingNameInput.sendKeys(data.get(0).get(1));
+
+        WebElement primaryTradingCheckBox=driver.findElement(By.xpath("//*[@id=\"TradingNameDetails:PrimaryTradingName\"]/div[2]"));
+        primaryTradingCheckBox.click();
+
+        WebElement effectiveDate = driver.findElement(By.id("TradingNameDetails:EffectiveDate_input"));
+        effectiveDate.sendKeys(Keys.ENTER);
+        effectiveDate.sendKeys(Keys.ESCAPE);
+
+        WebElement capitalInvested = driver.findElement(By.id("TradingNameDetails:SourceOfCapitalInv"));
+        capitalInvested.sendKeys(data.get(1).get(1));
+
+        WebElement existingCapital = driver.findElement(By.id("TradingNameDetails:ExistBusinessCapital_input"));
+        existingCapital.sendKeys(data.get(2).get(1));
+
+        WebElement totalCapital = driver.findElement(By.id("TradingNameDetails:TotCapitalInvst_input"));
+        totalCapital.sendKeys(data.get(3).get(1));
+
+        WebElement natureOfBusiness = driver.findElement(By.id("TradingNameDetails:NatureOfBusiness"));
+        natureOfBusiness.sendKeys(data.get(4).get(1));
+
+        WebElement AccountYearEndDayDropdown = driver.findElement(By.xpath("//*[@id=\"TradingNameDetails:AccountYearEndDateDD\"]/div[3]"));
+        AccountYearEndDayDropdown.click();
+        Thread.sleep(4000);
+        driver.findElement(By.xpath("//li[@data-label='" + data.get(5).get(1) + "']")).click();
+
+        WebElement AccountYearEndMonthDropdown = driver.findElement(By.xpath("//*[@id=\"TradingNameDetails:AccountYearEndDateDD\"]/div[3]"));
+        AccountYearEndMonthDropdown.click();
+        Thread.sleep(4000);
+        driver.findElement(By.xpath("//li[@data-label='" + data.get(6).get(1) + "']")).click();
+
+        WebElement RGD = driver.findElement(By.id("TradingNameDetails:RGDNo"));
+        RGD.sendKeys(BaseClass.getRandom(4));
+
+        Thread.sleep(1000);
+        JavascriptExecutor js3 = (JavascriptExecutor) driver;
+        js3.executeScript("document.getElementById('" + Pro.getProperty("TradingNameDetails:RGDNo") + "').setAttribute('value', '" + data.get(7).get(1) + "')");
+
+        Thread.sleep(2000);
+        WebElement okButton = driver.findElement(By.xpath("//button[@type='submit' and span='New']"));
+        okButton.click();
+
+
+
+
+    }
+
+
 
     @When("^Enter Date Of Birth in additional info tab\"([^\"]*)\"$")
     public void enter_Date_Of_Birth_in_additional_info_tab(String DOB, DataTable AddTable) throws Throwable {
@@ -1635,7 +1700,8 @@ public class steps extends BaseClass {
         Thread.sleep(2000);
         WebElement SName = driver.findElement(By.xpath(Pro.getProperty("Addresses_StreetName_XPATH")));
         action.sendKeys(SName, data.get(6).get(1)).build().perform();
-        WebElement CName = driver.findElement(By.xpath(Pro.getProperty("Addresses_Town/City_XPATH")));
+        Thread.sleep(2000);
+        WebElement CName = driver.findElement(By.id(Pro.getProperty("Addresses_Town/City_ID")));
         action.sendKeys(CName, data.get(7).get(1)).build().perform();
 
         Thread.sleep(4000);
@@ -1981,7 +2047,8 @@ public class steps extends BaseClass {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         WebElement tinLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("TIN Number_label")));
         System.out.println("---------------------------------------------------------");
-        System.out.println("Taxpayer TIN is"+ tinLabel.getText());
+        System.out.println("Taxpayer TIN is "+ tinLabel.getText());
+        System.out.println("---------------------------------------------------------");
     }
 
     @When("^Enter Attachment Tab details$")

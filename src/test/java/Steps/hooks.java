@@ -20,7 +20,6 @@ public class hooks extends BaseClass {
     @Before()
     public void before(Scenario scenario) throws IOException {
         this.scenario = scenario;
-        //driver = BaseClass.getDriver();
     }
 
 //    @After(order=1)
@@ -39,7 +38,8 @@ public class hooks extends BaseClass {
         try {
             FileUtils.copyFile(screenshot_with_scenario_name,destPath);
         } catch (
-                IOException e) { // TODO Auto-generated catch block
-            e.printStackTrace(); }
+                IOException e) {
+            new File("Failed to capture screenshot: " + e.getMessage());
+        }
     }
 }
