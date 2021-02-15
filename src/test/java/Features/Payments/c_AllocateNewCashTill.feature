@@ -1,4 +1,5 @@
 Feature: [SUC:05-02] Allocate New Cash Till
+#credentials must be for cash officer
 
   @trial1
   Scenario: UAT_M7_02-01-UAT_M7_02-02-Verify the Process of Allocate Cash Till

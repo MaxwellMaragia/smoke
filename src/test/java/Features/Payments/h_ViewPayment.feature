@@ -1,5 +1,5 @@
 Feature: [SUC:05-17] View Payment
-
+  #credentials must be for cash officer
   Background:
     Given User navigates to the login page
     When Enters the username "cashofficer7" and password "Passw0rd" to login

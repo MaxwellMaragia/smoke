@@ -158,5 +158,5 @@ Feature: [SUC:05-06] Payment Receipting
     Then Find document Details pop up window should be displayed
 
     Examples:
-      | Taxpayer Classification Type | TIN      | Name of Person Paying | amount | TaxType               | Amount Allocated |
-      | Individual                   | P0017167 | DR Barack Obama       | 1000   | Non Resident Tax(NRT) | 100000           |
+      | Taxpayer Classification Type | TIN      | Name of Person Paying | amount |
+      | Individual                   | P0017167 | DR Barack Obama       | 1000   |

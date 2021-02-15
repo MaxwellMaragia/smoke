@@ -1,5 +1,5 @@
 Feature: [SUC:22-10] Print Exemption Documents
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-02-Apply for Exemption(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -19,7 +19,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-02-CRM Reject the Exemption Application(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -41,10 +41,10 @@ Feature: [SUC:22-10] Print Exemption Documents
     Then Application Account Adjustment status should be "Rejected"
 
     Examples:
-      | Notes                 | Reason               |
-      | Invalid Documentation | EXEMPTION_APP_REJECT |
+      | Notes                 |
+      | Invalid Documentation |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-01-UAT_M7_10-02-Verify the Process of Print Taxpayer Documents
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -64,7 +64,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario: UAT_M7_10-02-CRM approve the Exemption Application(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -85,7 +85,7 @@ Feature: [SUC:22-10] Print Exemption Documents
 
 
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-02Apply for Exemption Cancellation(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -101,7 +101,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN | exemptionCategory | ECRType | applicationStatus | reason             | notes           |
       | %   | Exemption         | %       | Active            | No Longer Eligible | invalid details |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario: UAT_M7_10-02-CRM Approve the Exemption Cancellation(Trips+)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -119,7 +119,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-02-Apply for Exemption Suspension(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -135,7 +135,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN | exemptionCategory | ECRType | applicationStatus | reason              | submissionType |
       | %   | Exemption         | %       | Active            | Under Investigation | SuspendReason  |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-02-Apply for Exemption Reactivation(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -151,7 +151,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN | exemptionCategory | ECRType | applicationStatus | reason                 | submissionType   |
       | %   | Exemption         | %       | Active            | Investigation Complete | reactivateReason |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-03-Verify the Process of Service Call Fails
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -171,7 +171,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN      | Category | applicant | designation | supervisorTIN | exemptionCode |
       | P0018531 | Gift Tax | tripsuser | supervisor  | P0019254      | 0005          |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario: UAT_M7_10-03-CRM approve the Exemption Application(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window
@@ -189,7 +189,7 @@ Feature: [SUC:22-10] Print Exemption Documents
     And click save on exemption
     Then Application Account Adjustment status should be "Approved"
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario Outline: UAT_M7_10-03-Apply for Exemption Cancellation(Trips+)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -205,7 +205,7 @@ Feature: [SUC:22-10] Print Exemption Documents
       | TIN | exemptionCategory | ECRType | applicationStatus | reason             | notes           |
       | %   | Exemption         | %       | Active            | No Longer Eligible | invalid details |
 
-  @[finder1]
+  @[finder1] @Exemptions
   Scenario: UAT_M7_10-03-CRM Approve the Exemption Cancellation(CRM)
     Given Open CRM URL for Accounting Module
     And Close Popup Window

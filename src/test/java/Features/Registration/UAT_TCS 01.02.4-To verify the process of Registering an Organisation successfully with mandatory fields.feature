@@ -41,13 +41,6 @@ Feature: [SUC:01-01] Submit Registration Application	Organisation - Register Tax
     And enters director "P0017167" and "startDate"
     Then Click On Organization Page Submit Button
     And  Verify the ARN number "<ARN>"
-
-    Examples:
-      | ARN                                           |
-      | Processing Completed - Reference Number - ARN |
-
-  @[SUC:01-01] @main @MRA @MRA-ORG
-  Scenario Outline: UAT_TCS 02.02.1	To verify the process of Approving Organisation Registration
     Given Open CRM URL Module
     And Close Popup Window
     Then Click on registration application link
@@ -68,7 +61,11 @@ Feature: [SUC:01-01] Submit Registration Application	Organisation - Register Tax
     Then Click on Save button
     Then switch to frame1
     And Verify the String "<Read>"
+    And Clicks on Taxpayer name CRM
+    And refresh page
+    Then switch to frame0
+    Then Taxpayer Tin is displayed
 
     Examples:
-      | Approve           | Read     |
-      | Organisation Name | Approved |
+      | Approve           | Read     | ARN                                           |
+      | Organisation Name | Approved | Processing Completed - Reference Number - ARN |

@@ -1,5 +1,6 @@
 Feature: [SUC:05-19] Bulk Upload - Payments
 
+#  Change path of upload documents
   Background:
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login

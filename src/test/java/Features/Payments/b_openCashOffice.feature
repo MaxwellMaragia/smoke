@@ -1,5 +1,6 @@
 Feature: [SUC:05-15] Open a Cash Office
 
+#  credentials must be for cash supervisor
   Background:
     Given User navigates to the login page
     When Enters the username "cashofficer22" and password "Passw0rd" to login
@@ -13,5 +14,5 @@ Feature: [SUC:05-15] Open a Cash Office
     Then System opens the Cash Office
 
     Examples:
-      | cfN       |
-      | Geeta |
+      | cfN   |
+      | Elewa |

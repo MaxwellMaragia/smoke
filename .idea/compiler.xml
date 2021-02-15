@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ReturnsProcessing_SIT" />
-        <module name="smoke" />
-        <module name="untitled" />
         <module name="SMOKE" />
-        <module name="ReturnsProcessing" />
+        <module name="smoke" />
         <module name="TBL-MRA-Smoke-Sanity" />
+        <module name="ReturnsProcessing_SIT" />
+        <module name="ReturnsProcessing" />
+        <module name="untitled" />
       </profile>
     </annotationProcessing>
   </component>
