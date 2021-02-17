@@ -19,7 +19,7 @@ Feature: [SUC:01-11] Create Applicant Portal Credential
       | LastName      | Mende      |
       | DOB           | 01/01/1990 |
       | POB           | Lilongwe   |
-      | Id            | 14111111   |
+      | Id            | 141111156  |
       | Date of issue | 01/01/1998 |
       | Expiry Date   | 01/01/2030 |
       | country       | malawi     |
@@ -33,7 +33,7 @@ Feature: [SUC:01-11] Create Applicant Portal Credential
     Examples:
 
 #    change email after each run
-      | Taxpayer Registration Type | identification type | email                | password     | path                                  |
-      | Individual                 | NID Card            | max0@mailinator.com | Passw0rd@123 | C:\id_doc.png |
+      | Taxpayer Registration Type | identification type | email               | password     | path          |
+      | Individual                 | NID Card            | max2@mailinator.com | Passw0rd@123 | C:\id_doc.png |
 
 

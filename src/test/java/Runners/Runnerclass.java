@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/java/Features"},
+        features = {"src/test/java/Features/Returns"},
         glue = "Steps",
 		tags = "@Returns",
 		dryRun = false,    //checks whether each feature has a mapped step definition

@@ -40,6 +40,8 @@ public class steps extends BaseClass {
     public steps(sharedatastep sharedata) throws IOException {
         steps.sharedata = sharedata;
         driver = BaseClass.getDriver();
+
+
     }
 
     @Before(order = 0)
@@ -208,9 +210,9 @@ public class steps extends BaseClass {
 
     @Then("^Click table column \"([^\"]*)\"$")
     public void click_table_column(String ColumnXpath) throws Throwable {
-        Thread.sleep(6000);
+        Thread.sleep(30000);
         WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ColumnXpath))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ColumnXpath))).click();
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ENTER);
     }
@@ -585,7 +587,7 @@ public class steps extends BaseClass {
             declarationDateLocator = "FlexibleFormEntity:declarantDate_input";
         }
 
-        WebDriverWait wait = new WebDriverWait(driver, 40);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(declarantNameLocator))).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(declarantNameLocator))).sendKeys("DR MARGIE WAMBUI");
@@ -636,7 +638,7 @@ public class steps extends BaseClass {
 
     @Then("^Switch to frame$")
     public void shift_focus_to_frame() throws Throwable {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 120);
         WebElement Iframe = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("iframe")));
         driver.switchTo().frame(Iframe);
     }
@@ -1113,7 +1115,7 @@ public class steps extends BaseClass {
         Thread.sleep(3000);
 
         List<List<String>> obj = data.asLists();
-        String[] elements = {obj.get(0).get(0), obj.get(1).get(0), obj.get(2).get(0), obj.get(3).get(0), obj.get(4).get(0)};
+        String[] elements = {obj.get(0).get(0), obj.get(1).get(0), obj.get(2).get(0)};
 
         for (String element : elements) {
             WebElement InputElement = driver.findElement(By.xpath(Pro.getProperty(element)));
@@ -1137,13 +1139,16 @@ public class steps extends BaseClass {
     @Then("^Select month \"([^\"]*)\" and \"([^\"]*)\"$")
     public void select_month_and_year(String month, String year) throws Throwable {
 
-        Thread.sleep(2000);
-        driver.findElement(By.xpath(Pro.getProperty("MonthDropdownXPATH"))).click();
+        WebDriverWait wait = new WebDriverWait(driver,60);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("MonthDropdownXPATH")))).click();
+
         String monthXPATH = "//span[contains(text(),'" + month + "')]";
-        driver.findElement(By.xpath(monthXPATH)).click();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath(Pro.getProperty("YearDropdownXPATH"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(monthXPATH))).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("YearDropdownXPATH")))).click();
+
         String yearXPATH = "//span[contains(text(),'" + year + "')]";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(yearXPATH))).click();
         driver.findElement(By.xpath(yearXPATH)).click();
 
     }
@@ -1181,7 +1186,7 @@ public class steps extends BaseClass {
 
     @Given("^User navigates to the login page$")
     public void user_navigates_to_the_login_page() throws Throwable {
-//    	driver = BaseClass.getDriver();
+//    	
 //    	Intergration
 //    	driver.get("http://18.202.88.7:8001/trips-ui/faces/login/tripsLogin.xhtml");
 
@@ -2872,7 +2877,7 @@ public class steps extends BaseClass {
 
     @Given("^Open CRM URL Module$")
     public void open_CRM_URL_Module() throws Throwable {
-//        driver = BaseClass.getDriver();
+//        
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
@@ -3895,7 +3900,7 @@ public class steps extends BaseClass {
 
     @Given("^Open CRM URL for Accounting Module$")
     public void open_CRM_URL_for_Accounting_Module() throws Throwable {
-//        driver = BaseClass.getDriver();
+//        
         driver.get(Pro.getProperty("MRA_crm_url_Registration"));
     }
 
@@ -4031,7 +4036,7 @@ public class steps extends BaseClass {
     //--------------------------------------Taxtype registration -Portal----------------------------------------------------------------------------------------------//
     @Given("^User navigates to the Portal login page$")
     public void user_navigates_to_the_portal_login_page() throws Throwable {
-        driver = BaseClass.getDriver();
+        
         driver.get(Pro.getProperty("PortalURL"));
     }
 
@@ -4236,8 +4241,19 @@ public class steps extends BaseClass {
         employeeNo.sendKeys(strArg1);
     }
 
+    @And("^Select attachment from \"([^\"]*)\"$")
+    public void select_attachment_from_something(String path) throws Throwable {
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"id_attachmentForm\"]/div/div/tb-dropdown/div/div[2]/p-dropdown/div/div[3]")).click();
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'National ID')]"))).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("id_reference")).sendKeys("32333345");
+        driver.findElement(By.xpath("//*[@id=\"id_fileChoose\"]/div/div[2]/div/div/div[1]/span/input")).sendKeys(path);
+    }
+
     //--------------------------geeta code----------------------------------------------------------------///
-    ///////--------------------------geeta code----------------------------------------------------------------///
+    //--------------------------geeta code----------------------------------------------------------------///
 
     @When("^User clicks login as Applicant$")
     public void user_clicks_login_as_applicant() throws Throwable {
@@ -4368,6 +4384,7 @@ public class steps extends BaseClass {
     public void successful_validation_message_appears() throws Throwable {
         Thread.sleep(5000);
         WebElement validateId = driver.findElement(By.id("id_btnValidate"));
+
         Assert.assertFalse(validateId.isEnabled());
     }
 

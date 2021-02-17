@@ -3,7 +3,7 @@ Feature: [SUC:01-12] Submit Portal Application
   Background:
     Given User navigates to the Portal login page
     When User clicks login as Applicant
-    And enters Portal email "max0@mailinator.com" and password "Passw0rd@123"
+    And enters Portal email "max1@mailinator.com" and password "Passw0rd@123"
     Then successfully logged in to appplicant portal
 
   @SUC:01-12 @UAT_TCS-03.03.4
@@ -45,5 +45,5 @@ Feature: [SUC:01-12] Submit Portal Application
     Then success message and exit confirmation dislayed
 
     Examples:
-      | purpose  | detail                | identification | number   | issue      | expiry     | address                | number | street | town     |
-      | Personal | v-bakam@microsoft.com | NID Card       | 32165499 | 01/01/1998 | 01/01/2030 | Foreign Postal Address | 22     | Lilo   | Lilongwe |
+      | purpose  | detail                   | identification | number     | issue      | expiry     | address                | number | street | town     |
+      | Personal | margiewambui11@gmail.com | NID Card       | 3216549966 | 01/01/1998 | 01/01/2030 | Foreign Postal Address | 22     | Lilo   | Lilongwe |
