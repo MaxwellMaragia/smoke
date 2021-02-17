@@ -1,5 +1,6 @@
 Feature: [SUC:05-19] Bulk Upload - Payments
 
+#  Change path of upload documents
   Background:
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd" to login
@@ -19,7 +20,7 @@ Feature: [SUC:05-19] Bulk Upload - Payments
       | C:\Users\barnaby.kamau\Documents\Bulk Upload Template.csv |
 
 #@SUC:05-19
-  @trial8
+  @trial1
   Scenario Outline: UAT_M7_19-03-Verify the Process of Payment Bulk Upload
     Given navigate Revenue Collection>>Bulk Payment
     When user clicks on browse button

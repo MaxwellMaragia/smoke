@@ -1,5 +1,6 @@
 Feature: Print Registration Reports_TaxType
 
+#  Only change download directory to your machines download path
   Background:
     Given Open trips URL
     And Login as Revenue Officer
@@ -7,7 +8,7 @@ Feature: Print Registration Reports_TaxType
     Then click on login
     Then Click reporting > reports
 
-  @UAT_TCS-01.32.1 @Test4
+  @UAT_TCS-01.32.1 @Test9
   Scenario: UAT_TCS 01.32.1-To Verify the Process of printing Tax Type Reports - Reactivated Tax Type List
     Then Select report to print "Reactivated Tax Type List"
     Then Select report file type "PDF"
@@ -18,7 +19,7 @@ Feature: Print Registration Reports_TaxType
     Then Click run report "frmReportDetails:RunReport"
     Then Verify file "Reactivated Tax Type List.xls" has been downloaded in downloads directory "C:\Users\barnaby.kamau\Downloads"
 
-  @UAT_TCS-01.27.1 @Test4
+ @UAT_TCS-01.27.1 @Test9
   Scenario: UAT_TCS 01.27.1-To Verify the Process of printing Taxpayer Reports - Taxpayer Registrations Summary of Transactions
     Then Select report to print "Taxpayer Registrations Summary of Transactions"
     Then Select report file type "PDF"

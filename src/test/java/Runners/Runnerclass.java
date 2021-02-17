@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/java/Features/Returns"},
         glue = "Steps",
-		tags = "@UAT_M4-02-11",
+		tags = "@Returns",
 		dryRun = false,    //checks whether each feature has a mapped step definition
 		monochrome = true,// neat output after tc run
-        plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+		plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:","json:target/positive/cucumber.json", "pretty", "html:target/positive/cucumber.html"}
 
 )
 
