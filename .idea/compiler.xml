@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="smoke" target="8" />
       <module name="untitled" target="8" />
     </bytecodeTargetLevel>
   </component>
