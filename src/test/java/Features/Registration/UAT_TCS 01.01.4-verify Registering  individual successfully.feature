@@ -1,6 +1,6 @@
 Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpayer
 #  Modify email and  Paths
-  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA
+  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA-indv-only
   Scenario Outline: UAT_TCS 01.01.4: To verify the process of Registering an individual successfully with mandatory fields
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd"

@@ -22,35 +22,25 @@ public class hooks extends BaseClass {
         this.scenario = scenario;
     }
 
-    @After(order=1)
-    public void AfterSelenium()
-    {
-        driver.close();
-        System.out.println("Completed execution for the scenario :" + scenario.getName());
-    }
-
+//    @After(order=1)
+//    public void AfterSelenium()
+//    {
+//        driver.close();
+//        System.out.println("Completed execution for the scenario :" + scenario.getName());
+//    }
 
     @After(order=2)
     public void AftersaveScreenshot(Scenario scenario) {
 
-        File destPath;
+        //Take the screenshot
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy_hh.mm.ss");
-        Date curDate = new Date(); String strDate = sdf.format(curDate);
-        File screenshot_with_scenario_name = (((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE));
-
-        if(scenario.isFailed())
-        {
-            destPath=new File("./test-output/Screenshots/Failed/" + scenario.getName()+ strDate + ".png");
-        }
-        else{
-            destPath=new File("./test-output/Screenshots/Passed/" + scenario.getName()+ strDate + ".png");
-        }
-
+        //Copy the file to a location and use try catch block to handle exception
         try {
-            FileUtils.copyFile(screenshot_with_scenario_name,destPath);
-        } catch (IOException e) { // TODO Auto-generated catch block
-            e.printStackTrace();
+            FileUtils.copyFile(screenshot, new File("./test-output/Screenshots/"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
+
 }

@@ -1225,14 +1225,18 @@ public class steps extends BaseClass {
     @When("^I Fill the Individual Taxpayer Registration form$")
     public void I_Fill_the_Individual_Taxpayer_Registration_form() throws Throwable {
 
+        //waits for trips to load Techno brain logo at bottom,,make sure page has fully loaded
         WebDriverWait wait = new WebDriverWait(driver, 70);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("j_idt88")));
         Actions action = new Actions(driver);
-        WebElement Reg = driver.findElement(By.xpath(Pro.getProperty("Registration_LINK_XPATH")));
+        Thread.sleep(5000);
+        WebElement Reg=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("Registration_LINK_XPATH"))));
 //        action.doubleClick(Reg).build().perform();
         Reg.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH")))).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH")))).click();
         WebElement Taxpayer = driver.findElement(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH")));
-        action.click(Taxpayer).build().perform();
+//        action.click(Taxpayer).build().perform();
+        Taxpayer.click();
         // 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterIndividual_LINK_XPATH")))).click();
         WebElement Individual = driver.findElement(By.xpath(Pro.getProperty("RegisterIndividual_LINK_XPATH")));
         action.click(Individual).build().perform();
@@ -1734,15 +1738,21 @@ public class steps extends BaseClass {
         driver.switchTo().frame(Addressframe);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait AddressType = new WebDriverWait(driver, 50);
-        AddressType.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("Addresses_Type_XPATH")))).click();
-        List<WebElement> AddressValue = driver.findElements(By.xpath(Pro.getProperty("Addresses_Type_ITEM_XPATH")));
-        for (WebElement option : AddressValue) {
-            String text2 = option.getText();
-            if (text2.equalsIgnoreCase(data.get(5).get(1))) {
-                option.click();
-                break;
-            }
-        }
+//        AddressType.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("Addresses_Type_XPATH")))).click();
+//        List<WebElement> AddressValue = driver.findElements(By.xpath(Pro.getProperty("Addresses_Type_ITEM_XPATH")));
+//        for (WebElement option : AddressValue) {
+//            String text2 = option.getText();
+//            if (text2.equalsIgnoreCase(data.get(5).get(1))) {
+//                option.click();
+//                break;
+//            }
+//        }
+
+        Thread.sleep(4000);
+        driver.findElement(By.xpath(Pro.getProperty("Addresses_Type_XPATH"))).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//li[contains(text(),'" + data.get(5).get(1) + "')]")).click();
+
         Thread.sleep(2000);
         WebElement SName = driver.findElement(By.xpath(Pro.getProperty("Addresses_StreetName_XPATH")));
         action.sendKeys(SName, data.get(6).get(1)).build().perform();
