@@ -1,6 +1,6 @@
 Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpayer
 #  Modify email and  Paths
-  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA-indv-only
+  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA-indv-only @main
   Scenario Outline: UAT_TCS 01.01.4: To verify the process of Registering an individual successfully with mandatory fields
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd"
@@ -82,7 +82,7 @@ Feature: [SUC:01-01] Submit Registration Application	Individual - Register Taxpa
       | DOB      | DOI        | IED        | ESD        | ARN                                           | Approve    | Read     |
       | 26091989 | 11/04/2010 | 11/04/2022 | 11/02/2000 | Processing Completed - Reference Number - ARN | First Name | Approved |
 
-  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA @MRA-INDV-PROP
+  @[SUC:01-01] @UAT_TCS-01.01.4 @MRA @MRA-INDV-PROP @main
   Scenario Outline: UAT_TCS 01.01.4: To verify the process of Registering an individual successfully (Sole Proprietor)
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd"

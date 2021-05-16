@@ -1249,7 +1249,10 @@ public class steps extends BaseClass {
         //Initialize data table
         List<List<String>> data = table.asLists();
 
-        driver.findElement(By.id(Pro.getProperty("FirstName_ID"))).sendKeys(data.get(0).get(1));
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Pro.getProperty("FirstName_ID"))));
+
+        firstName.sendKeys(data.get(0).get(1));
         driver.findElement(By.id(Pro.getProperty("LastName_ID"))).sendKeys(BaseClass.getRandom(9));
         Thread.sleep(2000);
         Actions action = new Actions(driver);

@@ -1,13 +1,13 @@
 Feature: SUC:02-01 Register Tax Type	Organisation-Register Tax Type
 
-  @SUC:02-01 @Test7 @MRA--
+  @SUC:02-01 @Test7 @MRA-- @taxtypes @main-
   Scenario Outline: UAT_TCS 01.20.2	To verify the process of Registering Tax Type
     Given  User navigates to the login page
     When Enter the username "tripsuser" and password "Passw0rd"
     Then click on login
     When I enter valid data on the TaxType Individual page <taxtype>
       | TaxpayerClassificationT | Organisation                              | 0 |
-      | TaxPayer_TIN            | V0021709                                  | 1 |
+      | TaxPayer_TIN            | V0021843                                  | 1 |
       | Turnover                | 20000                                     | 2 |
       | EDR                     | 16/09/2016                                | 3 |
       | Wait for Record         | Record Added                              | 4 |
