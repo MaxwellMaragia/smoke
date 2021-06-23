@@ -22,12 +22,12 @@ public class hooks extends BaseClass {
         this.scenario = scenario;
     }
 
-//    @After(order=1)
-//    public void AfterSelenium()
-//    {
-//        driver.close();
-//        System.out.println("Completed execution for the scenario :" + scenario.getName());
-//    }
+    @After(order=1)
+    public void AfterSelenium()
+    {
+        //driver.close();
+        System.out.println("Completed execution for the scenario :" + scenario.getName());
+    }
 
     @After(order=2)
     public void AftersaveScreenshot(Scenario scenario) {

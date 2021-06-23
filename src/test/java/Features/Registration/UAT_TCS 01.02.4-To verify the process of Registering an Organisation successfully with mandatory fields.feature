@@ -1,6 +1,6 @@
 Feature: [SUC:01-01] Submit Registration Application	Organisation - Register Taxpayer
 #  Modify email and Paths  on line 36 attachments and 61 only
-  @main @Org @MRA @MRA-ORG
+  @main @Org @MRA @MRA-ORG @MRA-ORG-REG
   Scenario Outline:UAT_TCS 01.02.4	To verify the process of Registering an Organisation successfully with mandatory fields
     Given User navigates to the login page
     When Enters the username "tripsuser" and password "Passw0rd"
@@ -25,19 +25,19 @@ Feature: [SUC:01-01] Submit Registration Application	Organisation - Register Tax
       | Contact Method         | Contact Methods              | 15    |
       | Purpose Value          | Business                     | 16    |
       | ContactTypeValue       | Email                        | 17    |
-      | ContactDetails         | v-bakam@microsoft.com        | 18    |
+      | ContactDetails         | margiewambui11@gmail.com     | 18    |
       | EndYearMonth           | February                     | 19    |
       | EndYeadDay             | 01                           | 20    |
     And Enter Attachment Tab details
-      | Attachments                 | Attachments                               | 19 0 |
-      | Attachment Date             | 21082016                                  | 20 1 |
-      | Attachment Pasport          | Business Registration Certificate         | 21 2 |
-      | Reference number            | ug                                        | 22 3 |
-      | File upload                 | C:\Users\barnaby.kamau\Desktop\id_doc.png | 23 4 |
-      | Attachments                 | Doccument                                 | 24 5 |
-      | Attachments                 | Certificate of Incorporation              | 25 6 |
-      | Attachments                 | Letter Of Authorization                   | 26 7 |
-      | Attachment Reference number | 78a                                       | 27 8 |
+      | Attachments                 | Attachments                       | 19 0 |
+      | Attachment Date             | 21082016                          | 20 1 |
+      | Attachment Pasport          | Business Registration Certificate | 21 2 |
+      | Reference number            | ug                                | 22 3 |
+      | File upload                 | C:\id_doc.png                     | 23 4 |
+      | Attachments                 | Doccument                         | 24 5 |
+      | Attachments                 | Certificate of Incorporation      | 25 6 |
+      | Attachments                 | Letter Of Authorization           | 26 7 |
+      | Attachment Reference number | 78a                               | 27 8 |
     And enters director "P0017167" and "startDate"
     Then Click On Organization Page Submit Button
     And  Verify the ARN number "<ARN>"
@@ -55,7 +55,7 @@ Feature: [SUC:01-01] Submit Registration Application	Organisation - Register Tax
     And Click on NextStage button
     Then switch to frame1
     Then Goto view AttachmentDetails screen
-    And Download the Attachment "C:\Users\barnaby.kamau\Downloads"
+    And Download the Attachment "C:\Users\maxma\Downloads"
     Then switch to frame1
     And Select Approval outcome Org dropdown value to Approve
     Then Click on Save button

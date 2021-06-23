@@ -28,7 +28,7 @@ public class BaseClass {
         FileInputStream fls = new FileInputStream("src\\test\\resources\\Objects\\object.properties");
         Pro.load(fls);
 
-        System.setProperty("webdriver.chrome.driver", "./Browsers/chromedriver_89.exe");
+        System.setProperty("webdriver.chrome.driver", "./Browser/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 

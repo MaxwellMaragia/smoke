@@ -1234,8 +1234,9 @@ public class steps extends BaseClass {
 //        action.doubleClick(Reg).build().perform();
         Reg.click();
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH")))).click();
-        WebElement Taxpayer = driver.findElement(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH")));
+        WebElement Taxpayer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterTaxpayer_LINK_XPATH"))));
 //        action.click(Taxpayer).build().perform();
+        Thread.sleep(5000);
         Taxpayer.click();
         // 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Pro.getProperty("RegisterIndividual_LINK_XPATH")))).click();
         WebElement Individual = driver.findElement(By.xpath(Pro.getProperty("RegisterIndividual_LINK_XPATH")));
@@ -1542,7 +1543,7 @@ public class steps extends BaseClass {
         Thread.sleep(2000);
         driver.findElement(By.id(Pro.getProperty("Identification_Frame_OK_ID"))).click();
 
-        Thread.sleep(5000);
+        Thread.sleep(6000);
         WebElement Identification1 = driver.findElement(By.id(Pro.getProperty("Identification_Add_ID_MRA")));
         Identification1.click();
         WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -1725,7 +1726,7 @@ public class steps extends BaseClass {
         okButton.click();
 
 
-        Thread.sleep(9000);
+        Thread.sleep(4000);
         List<WebElement> Addresses = driver.findElements(By.xpath(Pro.getProperty("RegisterIndividual_ITEM_XPATH")));
         for (WebElement option : Addresses) {
             String text2 = option.getText();
@@ -1736,7 +1737,7 @@ public class steps extends BaseClass {
         }
         WebElement Addressadd = driver.findElement(By.id(Pro.getProperty("Addresses_ADD_ID")));
         action.click(Addressadd).build().perform();
-        Thread.sleep(7000);
+        Thread.sleep(5000);
         WebElement Addressframe = driver.findElement(By.tagName("iframe"));
         driver.switchTo().frame(Addressframe);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1866,7 +1867,7 @@ public class steps extends BaseClass {
             System.out.println("Unsuccessful Registartion");
         }
 
-        Thread.sleep(27000);
+        Thread.sleep(2000);
     }
 
     @Then("^Verify the ARN number \"([^\"]*)\"$")
@@ -1895,7 +1896,7 @@ public class steps extends BaseClass {
             System.out.println("Text Not Verified and failed");
         }
 
-        Thread.sleep(25000);
+        Thread.sleep(5000);
     }
 
 
@@ -2653,7 +2654,7 @@ public class steps extends BaseClass {
         Reg.click();
 
 
-        Thread.sleep(2000);
+        Thread.sleep(6000);
         WebElement manage =driver.findElement(By.xpath(Pro.getProperty("ManageTaxpayer_LINK_XPATH")));
         manage.click();
         WebDriverWait Taxtype = new WebDriverWait(driver, 60);
@@ -2731,6 +2732,8 @@ public class steps extends BaseClass {
         WebElement attachment = driver.findElement(By.id("RevenueTypeDetails:AttachmentPath_input"));
         Thread.sleep(2000);
         attachment.sendKeys(data.get(5).get(1));
+
+
 
 
         driver.findElement(By.id(Pro.getProperty("Registration_RegisterTaxType_OK_ID"))).click();
@@ -2923,7 +2926,8 @@ public class steps extends BaseClass {
     @Then("^search for reference number$")
     public void search_for_reference_number() throws Throwable {
         Thread.sleep(3000);
-        //driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys("CRAL/000002969/2021");
+        //driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys("ARN/00022172/2021");
+
         driver.findElement(By.id(Pro.getProperty("Search_Field_ID"))).sendKeys(sharedatastep.A_CRMARN);
         driver.findElement(By.id(Pro.getProperty("Search_Field_Submit_ID"))).click();
     }
